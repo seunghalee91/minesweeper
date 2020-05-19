@@ -30,7 +30,37 @@ namespace Minesweeper
 
         public void GenerateCountNearBombs()
         {
-            throw new NotImplementedException();
+            int BombCount = 0;
+            //throw new NotImplementedException();
+            for (int x= 0; x < Height; x++)
+            {
+                for (int y= 0; y < Width; y++)
+                {
+                    if (MineItems[x, y].IsBomb != true)
+                    {
+                        for (int i = x - 1; i < x + 2; i++)
+                        {
+                            for (int j = y - 1; j < y + 2; j++)
+                            {
+                                if (i < 0)
+                                    i = 0;
+                                if (j < 0)
+                                    j = 0;
+                                if (i >= Height)
+                                    i = Height-1;
+                                if (j >= Width)
+                                    j = Width-1;
+
+                                if (MineItems[i, j].IsBomb == true)
+                                    BombCount++;
+                            }
+                        }
+                        MineItems[x, y].NearBombsCount = BombCount;
+                        BombCount = 0;
+                    }
+                }
+            }
+            
         }
     }
 }
