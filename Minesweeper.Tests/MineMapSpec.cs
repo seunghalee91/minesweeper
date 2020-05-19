@@ -1,26 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Xunit;
+using FluentAssertions;
 
-namespace Minesweeper
+namespace Minesweeper.Tests
 {
-    class Program
+    public class MineMapSpec
     {
-        static void Main(string[] args)
+        [Fact]
+        public void Should_GenerateCountNearBombs()
         {
-            //string[,] arr = new MineItem[5, 5] 
-            //{ 
-            //    { "0", "1", "1", "1", "0" }, 
-            //    { "0", "1", "*", "1", "0" }, 
-            //    { "1","3","3","2","0"},
-            //    {"1","*","*","1","0" }, 
-            //    { "1", "2", "2", "1", "0" }
-            //};
-
-
-            MineItem[,] arr = new MineItem[5, 5]
+            // arrange
+            MineItem[,] expect = new MineItem[5, 5]
             {
                 { new MineItem { IsBomb = false, NearBombsCount = 0 }, new MineItem { IsBomb = false, NearBombsCount = 1 }, new MineItem { IsBomb = false, NearBombsCount = 1 }, new MineItem { IsBomb = false, NearBombsCount = 1 }, new MineItem { IsBomb = false, NearBombsCount = 0 } },
                 { new MineItem { IsBomb = false, NearBombsCount = 0 }, new MineItem { IsBomb = false, NearBombsCount = 1 }, new MineItem { IsBomb = true, NearBombsCount = 1 }, new MineItem { IsBomb = false, NearBombsCount = 1 }, new MineItem { IsBomb = false, NearBombsCount = 0 } },
@@ -29,18 +19,21 @@ namespace Minesweeper
                 { new MineItem { IsBomb = false, NearBombsCount = 1 }, new MineItem { IsBomb = false, NearBombsCount = 2 }, new MineItem { IsBomb = false, NearBombsCount = 2 }, new MineItem { IsBomb = false, NearBombsCount = 1 }, new MineItem { IsBomb = false, NearBombsCount = 0 } },
             };
 
+            // act
+            var mineMap = new MineMap(5, 5);
+            mineMap.MineItems[1, 2].IsBomb = true;
+            mineMap.MineItems[3, 1].IsBomb = true;
+            mineMap.MineItems[3, 2].IsBomb = true;
+            mineMap.GenerateCountNearBombs();
 
+            // assert
             for (int i = 0; i < 5; i++)
             {
                 for (int j = 0; j < 5; j++)
                 {
-                    Console.Write("{0} ", arr[i, j]);
+                    mineMap.MineItems[i,j].ToString().Should().Be(expect[i, j].ToString());
                 }
-                Console.WriteLine();
             }
-
-
-            Console.ReadKey();
         }
     }
 }
