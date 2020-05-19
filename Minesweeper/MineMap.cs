@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Minesweeper
 {
@@ -30,37 +27,55 @@ namespace Minesweeper
 
         public void GenerateCountNearBombs()
         {
-            int BombCount = 0;
-            //throw new NotImplementedException();
-            for (int x= 0; x < Height; x++)
-            {
-                for (int y= 0; y < Width; y++)
-                {
-                    if (MineItems[x, y].IsBomb != true)
-                    {
-                        for (int i = x - 1; i < x + 2; i++)
-                        {
-                            for (int j = y - 1; j < y + 2; j++)
-                            {
-                                if (i < 0)
-                                    i = 0;
-                                if (j < 0)
-                                    j = 0;
-                                if (i >= Height)
-                                    i = Height-1;
-                                if (j >= Width)
-                                    j = Width-1;
 
-                                if (MineItems[i, j].IsBomb == true)
-                                    BombCount++;
-                            }
+            for (int y = 0; y < Width; y++)
+            {
+                for (int x = 0; x < Height; x++)
+
+                {
+                    if (MineItems[y, x].IsBomb) continue;
+
+
+                    if (y - 1 >= 0)
+                    {
+                        if (x - 1 >= 0)
+                        {
+                            if (MineItems[y - 1, x - 1].IsBomb == true) MineItems[y, x].NearBombsCount++;
                         }
-                        MineItems[x, y].NearBombsCount = BombCount;
-                        BombCount = 0;
+
+                        if (MineItems[y - 1, x].IsBomb == true) MineItems[y, x].NearBombsCount++;
+
+                        if (x + 1 < Width)
+                        {
+                            if (MineItems[y - 1, x + 1].IsBomb == true) MineItems[y, x].NearBombsCount++;
+                        }
+                    }
+
+                    if (y + 1 < Height)
+                    {
+                        if (x - 1 >= 0)
+                        {
+                            if (MineItems[y + 1, x - 1].IsBomb == true) MineItems[y, x].NearBombsCount++;
+                        }
+
+                        if (MineItems[y + 1, x].IsBomb == true) MineItems[y, x].NearBombsCount++;
+
+                        if (x + 1 < Width)
+                        {
+                            if (MineItems[y + 1, x + 1].IsBomb == true) MineItems[y, x].NearBombsCount++;
+                        }
+                    }
+
+                    if (x - 1 >= 0)
+                    {
+                        if (MineItems[y, x - 1].IsBomb == true) MineItems[y, x].NearBombsCount++;
+                    }
+                    if (x + 1 < Width)
+                    {
+                        if (MineItems[y, x + 1].IsBomb == true) MineItems[y, x].NearBombsCount++;
                     }
                 }
             }
-            
         }
     }
 }
