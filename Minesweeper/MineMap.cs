@@ -16,9 +16,9 @@ namespace Minesweeper
 
             MineItems = new MineItem[Width, Height];
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < Height; i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < Width; j++)
                 {
                     MineItems[i, j] = new MineItem();
                 }
@@ -76,6 +76,11 @@ namespace Minesweeper
                     }
                 }
             }
+        }
+
+        public void GenerateBombs(int v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

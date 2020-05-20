@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Minesweeper
 {
-    public class MineItem
+    public partial class MineItem 
     {
         public bool IsBomb
         {
