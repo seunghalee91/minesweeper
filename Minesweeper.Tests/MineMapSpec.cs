@@ -98,14 +98,19 @@ namespace Minesweeper.Tests
             }
         }
 
-        [Fact]
-        public void Should_GenerateBombs()
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        public void Should_GenerateBombs(int expectBombCount)
         {
             // arrange
 
             // act
             var mineMap = new MineMap(5, 5);
-            mineMap.GenerateBombs(3);
+            mineMap.GenerateBombs(expectBombCount);
 
             // assert
             int countBombs = 0;
@@ -119,7 +124,7 @@ namespace Minesweeper.Tests
                     }
                 }
             }
-            countBombs.Should().Be(3);
+            countBombs.Should().Be(expectBombCount);
         }
     }
 }

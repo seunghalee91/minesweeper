@@ -35,7 +35,6 @@ namespace Minesweeper
                 {
                     if (MineItems[y, x].IsBomb) continue;
 
-
                     if (y - 1 >= 0)
                     {
                         if (x - 1 >= 0)
@@ -78,9 +77,24 @@ namespace Minesweeper
             }
         }
 
-        public void GenerateBombs(int v)
+        public void GenerateBombs(int value)
         {
-            throw new NotImplementedException();
+
+            Random rand = new Random();
+            int x, y;
+            int bombCount = 0;
+
+            do
+            {
+                x = rand.Next(0, 5);
+                y = rand.Next(0, 5);
+                if (MineItems[x, y].IsBomb == false)
+                {
+                    MineItems[x, y].IsBomb = true;
+                    bombCount++;
+                }
+            } while (bombCount < value);
+
         }
     }
 }
