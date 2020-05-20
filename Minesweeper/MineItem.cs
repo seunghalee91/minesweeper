@@ -18,9 +18,19 @@ namespace Minesweeper
             get;
             set;
         }
+        public bool IsCovered
+        {
+            get;
+            set;
+        } = true;
 
         public override string ToString()
         {
+            if(IsCovered)
+            {
+                return ".";
+            }
+
             if (IsBomb)
             {
                 return "*";
