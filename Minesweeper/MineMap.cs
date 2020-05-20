@@ -97,9 +97,58 @@ namespace Minesweeper
 
         }
 
-        public void Click(int v1, int v2)
+        public void Click(int y, int x)
         {
-            throw new NotImplementedException();
+
+            MineItems[y, x].IsCovered = false;
+
+            if (MineItems[y, x].NearBombsCount != 0)
+            {
+                return;
+            }
+
+            #region 주변 ItemsClick
+            if (y - 1 >= 0)
+                {
+                    if (x - 1 >= 0)
+                    {
+                        if (MineItems[y - 1, x - 1].IsCovered == true)
+                        {
+                            Click(y - 1, x - 1);
+                        }
+                    }
+
+                    if (MineItems[y - 1, x].IsCovered == true) Click(y - 1, x);
+
+                    if (x + 1 < Width)
+                    {
+                        if (MineItems[y - 1, x + 1].IsCovered == true) Click(y - 1, x + 1);
+                    }
+                }
+            if (y + 1 < Height)
+            {
+                if (x - 1 >= 0)
+                {
+                    if (MineItems[y + 1, x - 1].IsCovered == true) Click(y + 1, x - 1);
+                }
+
+                if (MineItems[y + 1, x].IsCovered == true) Click(y + 1, x);
+
+                if (x + 1 < Width)
+                {
+                    if (MineItems[y + 1, x + 1].IsCovered == true) Click(y + 1, x + 1);
+                }
+            }
+            if (x - 1 >= 0)
+            {
+                if (MineItems[y, x - 1].IsCovered == true) Click(y, x - 1);
+            }
+            if (x + 1 < Width)
+                {
+                    if (MineItems[y, x + 1].IsCovered == true) Click(y, x + 1);
+                }
+            #endregion
+
         }
     }
 }
