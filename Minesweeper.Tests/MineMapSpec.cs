@@ -298,8 +298,8 @@ namespace Minesweeper.Tests
             }
             // Assert
             mineMap.CheckEndGame().Should().Be(true);
-
-
         }
+
+        
     }
 }

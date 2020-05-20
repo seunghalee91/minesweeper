@@ -9,6 +9,8 @@ namespace Minesweeper
         public int Width { get; }
         public int Height { get; }
 
+        public int CountBombs { get; private set; }
+
         public MineMap(int width, int height)
         {
             Width = width;
@@ -79,7 +81,7 @@ namespace Minesweeper
 
         public void GenerateBombs(int value)
         {
-
+            CountBombs = value;
             Random rand = new Random();
             int x, y;
             int bombCount = 0;
@@ -154,47 +156,25 @@ namespace Minesweeper
 
         public bool CheckEndGame()
         {
-            int bombCount = 0;
-            int unCoverItemsCount = 0;
-            int itemsCount = Width * Height;
+            int itemsCount = (Width * Height) - CountBombs;
 
-
-            //if clicked bomb..
-
-           
-
-
-            //bombCount & itemCount check;
             for (int j = 0; j < Height; j++)
             {
                 for (int i = 0; i < Width; i++)
                 {
-                    //if clicked Bomb.
-                    if (MineItems[i, j].IsBomb == true && MineItems[i,j].IsCovered == false)
-                    {
-                        return true;
-                    }
-
-                    //Bombs count , NormalItems Count.
-                    if (MineItems[i, j].IsBomb == true)
-                    {
-                        bombCount++;
-                    }
                     if (MineItems[i, j].IsCovered == false)
                     {
-                        unCoverItemsCount++;
+                        itemsCount--;
+
+                        if (MineItems[i, j].IsBomb == true)
+                        {
+                            return true;
+                        }
                     }
                 }
             }
-            itemsCount = itemsCount - bombCount;
 
-            if (unCoverItemsCount == itemsCount)
-            {
-                return true;
-            }
-
-
-            return false;
+            return itemsCount == 0;
         }
     }
 }
