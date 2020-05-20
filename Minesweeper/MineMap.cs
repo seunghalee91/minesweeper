@@ -99,6 +99,10 @@ namespace Minesweeper
 
         public void Click(int y, int x)
         {
+            if (MineItems[y, x].IsCovered == false)
+            {
+                return;
+            }
 
             MineItems[y, x].IsCovered = false;
 
@@ -112,43 +116,85 @@ namespace Minesweeper
                 {
                     if (x - 1 >= 0)
                     {
-                        if (MineItems[y - 1, x - 1].IsCovered == true)
-                        {
-                            Click(y - 1, x - 1);
-                        }
+                        Click(y - 1, x - 1);
                     }
 
-                    if (MineItems[y - 1, x].IsCovered == true) Click(y - 1, x);
+                    Click(y - 1, x);
 
                     if (x + 1 < Width)
                     {
-                        if (MineItems[y - 1, x + 1].IsCovered == true) Click(y - 1, x + 1);
+                        Click(y - 1, x + 1);
                     }
                 }
             if (y + 1 < Height)
             {
                 if (x - 1 >= 0)
                 {
-                    if (MineItems[y + 1, x - 1].IsCovered == true) Click(y + 1, x - 1);
+                    Click(y + 1, x - 1);
                 }
 
-                if (MineItems[y + 1, x].IsCovered == true) Click(y + 1, x);
+                Click(y + 1, x);
 
                 if (x + 1 < Width)
                 {
-                    if (MineItems[y + 1, x + 1].IsCovered == true) Click(y + 1, x + 1);
+                    Click(y + 1, x + 1);
                 }
             }
             if (x - 1 >= 0)
             {
-                if (MineItems[y, x - 1].IsCovered == true) Click(y, x - 1);
+                Click(y, x - 1);
             }
             if (x + 1 < Width)
-                {
-                    if (MineItems[y, x + 1].IsCovered == true) Click(y, x + 1);
-                }
+            {
+                Click(y, x + 1);
+            }
             #endregion
 
+        }
+
+        public bool CheckEndGame()
+        {
+            int bombCount = 0;
+            int unCoverItemsCount = 0;
+            int itemsCount = Width * Height;
+
+
+            //if clicked bomb..
+
+           
+
+
+            //bombCount & itemCount check;
+            for (int j = 0; j < Height; j++)
+            {
+                for (int i = 0; i < Width; i++)
+                {
+                    //if clicked Bomb.
+                    if (MineItems[i, j].IsBomb == true && MineItems[i,j].IsCovered == false)
+                    {
+                        return true;
+                    }
+
+                    //Bombs count , NormalItems Count.
+                    if (MineItems[i, j].IsBomb == true)
+                    {
+                        bombCount++;
+                    }
+                    if (MineItems[i, j].IsCovered == false)
+                    {
+                        unCoverItemsCount++;
+                    }
+                }
+            }
+            itemsCount = itemsCount - bombCount;
+
+            if (unCoverItemsCount == itemsCount)
+            {
+                return true;
+            }
+
+
+            return false;
         }
     }
 }

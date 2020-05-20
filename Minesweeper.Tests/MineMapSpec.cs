@@ -257,5 +257,49 @@ namespace Minesweeper.Tests
                 }
             }
         }
+
+        [Fact]
+        public void Should_EndGame()
+        {
+            MineItem[,] expect = new MineItem[3, 3]
+            {
+                {
+                    new MineItem { IsBomb = true },
+                    new MineItem { IsBomb = false, NearBombsCount = 1 },
+                    new MineItem { IsBomb = false, NearBombsCount = 0 }
+                },
+                {
+                    new MineItem { IsBomb = false, NearBombsCount = 1 },
+                    new MineItem { IsBomb = false, NearBombsCount = 1 },
+                    new MineItem { IsBomb = false, NearBombsCount = 0 },
+                },
+                {
+                    new MineItem { IsBomb = false, NearBombsCount = 0 },
+                    new MineItem { IsBomb = false, NearBombsCount = 0 },
+                    new MineItem { IsBomb = false, NearBombsCount = 0 },
+                },
+            };
+
+            // Act
+            var mineMap = new MineMap(3, 3);
+            mineMap.MineItems[0, 0].IsBomb = true;
+
+            mineMap.GenerateCountNearBombs();
+            //mineMap.Click(2, 2);
+
+            //mineMap.Click(0, 0);
+
+            for (int j = 0; j < 3; j++)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    mineMap.Click(i, j);
+                }
+            }
+            // Assert
+            mineMap.CheckEndGame().Should().Be(true);
+
+
+        }
     }
 }
