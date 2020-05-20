@@ -96,5 +96,10 @@ namespace Minesweeper
             } while (bombCount < value);
 
         }
+
+        public void Click(int v1, int v2)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
