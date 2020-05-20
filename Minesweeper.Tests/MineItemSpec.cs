@@ -13,7 +13,7 @@ namespace Minesweeper.Tests
             // Arrange
 
             // Act
-            var actual = new MineItem { IsBomb = true };
+            var actual = new MineItem { IsBomb = true, IsCovered=false };
 
             // Assert
             actual.ToString().Should().Be("*");
@@ -34,7 +34,7 @@ namespace Minesweeper.Tests
             // Arrange
 
             // Act
-            var actual = new MineItem { IsBomb = false, NearBombsCount = count };
+            var actual = new MineItem { IsBomb = false, NearBombsCount = count, IsCovered =false };
 
             // Assert
             actual.ToString().Should().Be(count.ToString());
