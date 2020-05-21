@@ -8,7 +8,6 @@ namespace Minesweeper
         public MineItem[,] MineItems { get; set; }
         public int Width { get; }
         public int Height { get; }
-
         public int CountBombs { get; private set; }
 
         public MineMap(int width, int height)

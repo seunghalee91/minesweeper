@@ -14,6 +14,7 @@ namespace Minesweeper
             mineMap.GenerateBombs(3);
             mineMap.GenerateCountNearBombs();
 
+            //Game 진행
             while (mineMap.CheckEndGame() == false)
             {
                 for (int i = 0; i < 5; i++)
@@ -35,6 +36,7 @@ namespace Minesweeper
                 Console.Clear();
             }
 
+            //결과 출력
             for (int i = 0; i < 5; i++)
             {
                 for (int j = 0; j < 5; j++)
