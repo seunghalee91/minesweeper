@@ -78,7 +78,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="AddView.xaml">
+    <Page Include="MineCellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MineMapView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -86,9 +90,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AddView.xaml.cs">
-      <DependentUpon>AddView.xaml</DependentUpon>
+    <Compile Include="MineCellView.xaml.cs">
+      <DependentUpon>MineCellView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MineMapView.xaml.cs">
+      <DependentUpon>MineMapView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MineMapViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>

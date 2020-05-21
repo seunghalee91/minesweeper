@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace Minesweeper.WPF
 {
-    [ValueConversion(typeof(Button),typeof(MineMap))]
+    [ValueConversion(typeof(Button),typeof(Minesweeper.MineMap))]
     public class Converter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -23,7 +23,7 @@ namespace Minesweeper.WPF
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             //Data -> Button  change statue
-            var minemap = parameter as MineMap;
+            var minemap = parameter as Minesweeper.MineMap;
             string btnContent = value as string;
             //btnContent = System.Convert.ToString(minemap.MineItems[,].NearBombsCount);
 

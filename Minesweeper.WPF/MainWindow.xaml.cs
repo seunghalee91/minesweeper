@@ -30,7 +30,7 @@ namespace Minesweeper.WPF
 
         private void _StartCommand(object obj)
         {
-            AddView add = new AddView();
+            MineMapView add = new MineMapView();
 
             if(add.ShowDialog() == true)
             {
