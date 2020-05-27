@@ -91,10 +91,9 @@
     </Page>
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="MainWindowViewModel.cs" />
-    <Compile Include="MineCellView.xaml.cs">
-      <DependentUpon>MineCellView.xaml</DependentUpon>
+    <Compile Include="MineItemView.xaml.cs">
+      <DependentUpon>MineItemView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MineCellViewModel.cs" />
     <Compile Include="MineMapView.xaml.cs">
       <DependentUpon>MineMapView.xaml</DependentUpon>
     </Compile>
@@ -107,7 +106,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MineCellView.xaml">
+    <Page Include="MineItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

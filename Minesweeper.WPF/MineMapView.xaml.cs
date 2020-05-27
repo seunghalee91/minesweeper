@@ -22,8 +22,8 @@ namespace Minesweeper.WPF
     public partial class MineMapView : UserControl
     {
         //public ObservableCollection<MineMap> minemap { get; private set; }
-        public MineMap minemap { get; private set; }
-        public Button[,] button { get; set; }
+        public MineMap MineMap { get; private set; }
+        public MineItemView[,] Buttons { get; set; }
 
 
         public ObservableCollection<MineMap> minemap1 { get; set; }
@@ -34,11 +34,6 @@ namespace Minesweeper.WPF
 
             CreateMap();
             CreateButtons();
-
-            minemap1 = new ObservableCollection<MineMap>();
-
-
-            minemap1.Add(minemap);
 
         }
 
@@ -51,7 +46,7 @@ namespace Minesweeper.WPF
             {
                 int row = Grid.GetRow(button);
                 int col = Grid.GetColumn(button);
-                var Item = minemap.MineItems[row, col];
+                var Item = MineMap.MineItems[row, col];
                
                 if (Item.IsBomb == false)
                 {
@@ -62,7 +57,7 @@ namespace Minesweeper.WPF
                         
                         if(Item.NearBombsCount == 0 )
                         {
-                            minemap.Click(row, col);
+                            MineMap.Click(row, col);
                         }
                     }
                     else
@@ -82,33 +77,26 @@ namespace Minesweeper.WPF
         }
         public void CreateMap ()
         {
-            //minemap = new ObservableCollection<MineMap>() { };
-            //minemap.Add(new MineMap(5, 5).);
-
-            minemap = new MineMap(5, 5);
-            minemap.GenerateBombs(1);
-            minemap.GenerateCountNearBombs();
-            minemap.ConvertMap();
+            MineMap = new MineMap(5, 5);
+            MineMap.GenerateBombs(1);
+            MineMap.GenerateCountNearBombs();
+            MineMap.ConvertMap();
         }
 
         public void CreateButtons()
         {
-            button = new Button[5,5];
+            Buttons = new MineItemView[5,5];
 
             for (int i = 0; i < 5; i++)
             {
                 for (int j = 0; j < 5; j++)
                 {
-                    button[i,j] = new Button();
-                    button[i,j].Width = 70;
-                    button[i,j].Height = 70;
-                    //button[i].Content = minemap.MineItems2[i].NearBombsCount;
-                    button[i,j].Content = ".";
-                    //button[i, j].SetBinding()
-                    button[i,j].Click += Button_Click;
-                    Grid.SetColumn(button[i,j], i );
-                    Grid.SetRow(button[i,j], j);
-                    xmlgrid1.Children.Add(button[i,j]);
+                    Buttons[i,j] = new MineItemView(MineMap.MineItems[i,j]);
+                    Buttons[i,j].Width = 70;
+                    Buttons[i,j].Height = 70;
+                    Grid.SetColumn(Buttons[i,j], i );
+                    Grid.SetRow(Buttons[i,j], j);
+                    xmlgrid1.Children.Add(Buttons[i,j]);
                 }
             }
         }
