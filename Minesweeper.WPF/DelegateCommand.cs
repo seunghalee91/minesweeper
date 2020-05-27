@@ -9,44 +9,36 @@ namespace Minesweeper.WPF
 {
     public class DelegateCommand : ICommand
     {
-        private readonly Predicate<object> _canExecute;
-        private readonly Action<object> _execute;
+        readonly Action<object> _execute;
+        readonly Predicate<object> _canExecute;
 
-        public event EventHandler CanExecuteChanged;
-
-        public DelegateCommand(Action<object> execute)
-            : this(execute, null)
+        public DelegateCommand(Action<object> execute, Predicate<object> canExecute)
         {
-        }
+            if (execute == null)
+                throw new NullReferenceException("execute can not null");
 
-        public DelegateCommand(Action<object> execute,
-            Predicate<object> canExecute)
-        {
             _execute = execute;
             _canExecute = canExecute;
         }
 
-        public bool CanExecute(object parameter)    //src가 command사용할 수 있는지 확인시..
+        public DelegateCommand(Action<object> execute) : this(execute, null)
         {
-            if (_canExecute == null)
-            {
-                return true;
-            }
-
-            return _canExecute(parameter);
         }
 
-        public void Execute(object parameter)       //command호출시..
+        public event EventHandler CanExecuteChanged
         {
-            _execute(parameter);
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
         }
 
-        public void RaiseCanExecuteChanged()
+        public bool CanExecute(object parameter)
         {
-            if (CanExecuteChanged != null)
-            {
-                CanExecuteChanged(this, EventArgs.Empty);
-            }
+            return _canExecute == null ? true : _canExecute(parameter);
+        }
+
+        public void Execute(object parameter)
+        {
+            _execute.Invoke(parameter);
         }
     }
 }

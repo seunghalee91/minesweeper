@@ -17,61 +17,13 @@ using System.Windows.Shapes;
 
 namespace Minesweeper.WPF
 {
-    public partial class MainWindow : Window , INotifyPropertyChanged
+    public partial class MainWindow : Window
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            if (propertyName != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
 
-        private void _StartCommand(object obj)
+        public MainWindow(MainWindowViewModel mainviewModel)
         {
-            MineMapView add = new MineMapView();
-
-            if(add.ShowDialog() == true)
-            {
-                if (Level_listbox.SelectedIndex == 0)
-                {
-                    //begginer
-                }
-                else if (Level_listbox.SelectedIndex == 1)
-                {
-                    //advanced
-                }
-                add.ShowDialog();
-            }
-        }
-        private void _CancelCommand(object obj)
-        {
-            this.Close();
-        }
-
-        public DelegateCommand StartCommandAction { get; set; }
-        public DelegateCommand CancelCommandAction { get; set; }
-
-        public MainWindow()
-        {
-            Title = "Mine Sweeper";
-            Width = 400;
-            Height = 400;
+            DataContext = mainviewModel;
             InitializeComponent();
-            DataContext = this;
-
-
-            string[] selectLevel = new string[] { "Begginer", "Advanced" };
-            Level_listbox.ItemsSource = selectLevel;
-
-
-
-            StartCommandAction = new DelegateCommand(_StartCommand);
-            CancelCommandAction = new DelegateCommand(_CancelCommand);
-
-
         }
-
     }
 }

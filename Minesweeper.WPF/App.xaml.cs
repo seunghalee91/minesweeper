@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,26 @@ namespace Minesweeper.WPF
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            _createMainWindow();
+            base.OnStartup(e);
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            base.OnExit(e);
+        }
+
+        private void _createMainWindow()
+        {
+            //MineCellViewModel cellModel = new MineCellViewModel();
+            MineMapViewModel viewModel = new MineMapViewModel();
+            MainWindowViewModel mainViewModel = new MainWindowViewModel(viewModel);
+            MainWindow mainWindow = new MainWindow(mainViewModel);
+
+            mainWindow.Show();
+
+        }
     }
 }

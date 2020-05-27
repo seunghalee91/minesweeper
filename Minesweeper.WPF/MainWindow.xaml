@@ -5,27 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Minesweeper.WPF"
         mc:Ignorable="d"
-        >
+        Title="MainWindow" Height="450" Width="400"
+        d:DataContext="{d:DesignInstance {x:Type local:MainWindowViewModel}}">
+
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="231*"/>
-            <RowDefinition Height="Auto" MinHeight="10"/>
-            <RowDefinition Height="36*"/>
-            <RowDefinition Height="47*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-
-        <Image Grid.ColumnSpan="4" Source="Image/startImage.jpg"></Image>
-
-        <Label Grid.Row="2" Grid.Column="0" Content="SelectLevel : " HorizontalAlignment="Right" VerticalAlignment="Center" Height="26" Margin="0,5" Width="81"></Label>
-        <ComboBox Name="Level_listbox" Grid.Row="2" Grid.Column="1" MaxWidth="130" MaxHeight="30"  Margin="5" SelectedIndex="0"/>
-        <Button Grid.Row="3" Grid.Column="2" Width="50" MaxHeight="50" HorizontalAlignment="Center" Content="시작"  Command="{Binding Path=StartCommandAction}"></Button>
-        <Button Grid.Row="3" Grid.Column="3" Width="50" MaxHeight="50" HorizontalAlignment="Center" Content="끝내기"  Command="{Binding Path=CancelCommandAction}"></Button>
-
+        <local:MineMapView DataContext="{Binding MineMapViewModel}"/>
     </Grid>
 </Window>

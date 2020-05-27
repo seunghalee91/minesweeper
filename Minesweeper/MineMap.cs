@@ -1,11 +1,14 @@
-﻿using System;
+﻿using ReactiveUI;
+using System;
 using System.Linq;
 
 namespace Minesweeper
 {
-    public class MineMap
+    public class MineMap :ReactiveObject
     {
         public MineItem[,] MineItems { get; set; }
+        public MineItem[] MineItems2 { get; set; }
+         
         public int Width { get; }
         public int Height { get; }
         public int CountBombs { get; private set; }
@@ -28,7 +31,6 @@ namespace Minesweeper
 
         public void GenerateCountNearBombs()
         {
-
             for (int y = 0; y < Width; y++)
             {
                 for (int x = 0; x < Height; x++)
@@ -87,17 +89,15 @@ namespace Minesweeper
 
             do
             {
-                x = rand.Next(0, 5);
-                y = rand.Next(0, 5);
+                x = rand.Next(0, Width);
+                y = rand.Next(0, Height);
                 if (MineItems[x, y].IsBomb == false)
                 {
                     MineItems[x, y].IsBomb = true;
                     bombCount++;
                 }
             } while (bombCount < value);
-
         }
-
         public void Click(int y, int x)
         {
             if (MineItems[y, x].IsCovered == false)
@@ -106,6 +106,7 @@ namespace Minesweeper
             }
 
             MineItems[y, x].IsCovered = false;
+
 
             if (MineItems[y, x].NearBombsCount != 0)
             {
@@ -150,9 +151,7 @@ namespace Minesweeper
                 Click(y, x + 1);
             }
             #endregion
-
         }
-
         public bool CheckEndGame()
         {
             int itemsCount = (Width * Height) - CountBombs;
@@ -174,6 +173,16 @@ namespace Minesweeper
             }
 
             return itemsCount == 0;
+        }
+        public void ConvertMap()
+        {
+            int totalCount = Height * Width;
+            MineItems2 = new MineItem[totalCount];
+            
+            for (int i = 0; i < totalCount; i++)
+            {
+                MineItems2[i] = MineItems[i / Height, i % Width];
+            }
         }
     }
 }
