@@ -26,141 +26,66 @@ namespace Minesweeper.WPF
             }
         }
         #endregion
+        public MineMap MineMap { get; private set; }
+        public MineItemView[,] Buttons { get; set; }
+        public int _colCount { get; set; }
+        public int _rowCount { get; set; }
 
-        public string Contents { get; set; }
-        public MineMap minemap { get; set; }
-        public int _width;
-        public int _height;
-        public int Width
+        public int ColCount
         {
             get
             {
-                return _width;
+                return _colCount;
             }
             set
             {
-                _width = value;
+                _colCount = value;
                 OnPropertyChanged();
             }
         }
-        public int Height
+        public int RowCount
         {
             get
             {
-                return _height;
+                return _rowCount;
             }
             set
             {
-                _height = value;
+                _rowCount = value;
                 OnPropertyChanged();
             }
         }
 
 
-        //public DelegateCommand ClickCommand { get; set; }
-        //public ObservableCollection<MineMap> mineitem { get; set; }
-
+        public void CreateMap(int width,int height)
+        {
+            MineMap = new MineMap(RowCount, ColCount);
+            MineMap.GenerateBombs(3);
+            MineMap.GenerateCountNearBombs();
+        }
+        public void CreateButtons()
+        {
+            Buttons = new MineItemView[5, 5];
+            
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    Buttons[i, j] = new MineItemView(MineMap.MineItems[i, j]);
+                    Buttons[i, j].Width = 70;
+                    Buttons[i, j].Height = 70;
+                    Grid.SetColumn(Buttons[i, j], i);
+                    Grid.SetRow(Buttons[i, j], j);
+                    //xmlgrid1.Children.Add(button[i, j]);
+                }
+            }
+        }
 
         public MineMapViewModel()
         {
-            MineMap minemap = new MineMap(5, 5);
-            minemap.GenerateBombs(2);
-            minemap.GenerateCountNearBombs();
-
-
-            //mineitem = new ObservableCollection<MineMap>();
-
-
-            //mineitem.Add(minemap);
-
-            //CreateMap(5, 5);
-            //CreateGrid();
-
-        }
-
-        public void CreateGrid()
-        {
-            #region
-            //grid 
-            //Grid DynamicGrid = new Grid();
-            //DynamicGrid.Width = 500;
-            //DynamicGrid.ShowGridLines = true;
-
-            ////col
-            //ColumnDefinition gridcol1 = new ColumnDefinition();
-            //ColumnDefinition gridcol2 = new ColumnDefinition();
-            //ColumnDefinition gridcol3 = new ColumnDefinition();
-            //ColumnDefinition gridcol4 = new ColumnDefinition();
-            //ColumnDefinition gridcol5 = new ColumnDefinition();
-            //RowDefinition gridrow1 = new RowDefinition();
-            //RowDefinition gridrow2 = new RowDefinition();
-            //RowDefinition gridrow3 = new RowDefinition();
-            //RowDefinition gridrow4 = new RowDefinition();
-            //RowDefinition gridrow5 = new RowDefinition();
-
-            ////set
-            //DynamicGrid.ColumnDefinitions.Add(gridcol1);
-            //DynamicGrid.ColumnDefinitions.Add(gridcol2);
-            //DynamicGrid.ColumnDefinitions.Add(gridcol3);
-            //DynamicGrid.ColumnDefinitions.Add(gridcol4);
-            //DynamicGrid.ColumnDefinitions.Add(gridcol5);
-
-            //DynamicGrid.RowDefinitions.Add(gridrow1);
-            //DynamicGrid.RowDefinitions.Add(gridrow2);
-            //DynamicGrid.RowDefinitions.Add(gridrow3);
-            //DynamicGrid.RowDefinitions.Add(gridrow4);
-            //DynamicGrid.RowDefinitions.Add(gridrow5);
-
-            //Button[] button = new Button[25];
-
-            //Button set
-            //for(int i=0;i< 25; i++)
-            //{
-            //    button[i] = new Button();
-            //    button[i].Content = "button" + $"{i}";
-            //    Grid.SetRow(button[i], i/5);
-            //    Grid.SetColumn(button[i], i % 5);
-            //    DynamicGrid.Children.Add(button[i]);
-            //}
-        #endregion
-
-            Canvas canvas1 = new Canvas();
-            Button[] button = new Button[25];
-            
-            for(int i=0;i<25;i++)
-            {
-                button[i] = new Button();
-                button[i].Width = 50;
-                button[i].Height = 50;
-                //button[i].Content = minemap.MineItems2[i].NearBombsCount;
-                Canvas.SetLeft(button[i], 100);
-                Canvas.SetTop(button[i],100);
-                canvas1.Children.Add(button[i]);
-            }
-        }
-
-        public void _clickbutton(object obj)
-        {
-            var button = obj as Button;
-
-            MessageBox.Show(Convert.ToString(button.Content));
-        }
-
-
-        public void CreateMap(int height,int width)
-        {
-            Width = width;
-            Height = height;
-
-            minemap = new MineMap(Height, Width);
-            minemap.GenerateBombs(4);
-            minemap.GenerateCountNearBombs();
-            minemap.ConvertMap();
-        }
-
-        public void GetContents()
-        {
-            Contents = "TEST";
+            ColCount = 5;
+            RowCount = 5;
+            CreateMap(ColCount, RowCount);
         }
     }
 }

@@ -7,10 +7,13 @@
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
              xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="500"
+             d:DesignHeight="800" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance {x:Type local:MineMapViewModel}}">
     
     <Grid Name="xmlgrid1">
+        <!--<UniformGrid Grid.Column="{Binding ColCount}" Grid.Row="{Binding RowCount}">
+            
+        </UniformGrid>-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -25,55 +28,5 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
-        <ItemsControl>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Button Width="Auto" Height="Auto" Content="{Binding NearBombsCount}"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-
-        <!--<Button Grid.Row="0" Grid.Column="0" Content="{Binding minemap.MineItems2[0].NearBombsCount}">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="Click">
-                    <ei:CallMethodAction TargetObject="{Binding}" MethodName="ClickCommand"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </Button>-->
-
-
-        <!--<Button index Name="btn1" Grid.Row="0" Grid.Column="0" Content="{Binding minemap.MineItems2[0].NearBombsCount}" Click="Button_Click"/>
-        <Button Name="btn2" Grid.Row="0" Grid.Column="1" Content="{Binding minemap.MineItems2[1].NearBombsCount}" Click="Button_Click"/>
-        <Button Grid.Row="0" Grid.Column="2" Content="{Binding minemap.MineItems2[2].NearBombsCount}"/>
-        <Button Grid.Row="0" Grid.Column="3" Content="{Binding minemap.MineItems2[3].NearBombsCount}"/>
-        <Button Grid.Row="0" Grid.Column="4" Content="{Binding minemap.MineItems2[4].NearBombsCount}"/>
-
-        <Button Grid.Row="1" Grid.Column="0" Content="{Binding minemap.MineItems2[5].NearBombsCount}"/>
-        <Button Grid.Row="1" Grid.Column="1" Content="{Binding minemap.MineItems2[6].NearBombsCount}"/>
-        <Button Grid.Row="1" Grid.Column="2" Content="{Binding minemap.MineItems2[7].NearBombsCount}"/>
-        <Button Grid.Row="1" Grid.Column="3" Content="{Binding minemap.MineItems2[8].NearBombsCount}"/>
-        <Button Grid.Row="1" Grid.Column="4" Content="{Binding minemap.MineItems2[9].NearBombsCount}"/>
-
-        <Button Grid.Row="2" Grid.Column="0" Content="{Binding minemap.MineItems2[10].NearBombsCount}"/>
-        <Button Grid.Row="2" Grid.Column="1" Content="{Binding minemap.MineItems2[11].NearBombsCount}"/>
-        <Button Grid.Row="2" Grid.Column="2" Content="{Binding minemap.MineItems2[12].NearBombsCount}"/>
-        <Button Grid.Row="2" Grid.Column="3" Content="{Binding minemap.MineItems2[13].NearBombsCount}"/>
-        <Button Grid.Row="2" Grid.Column="4" Content="{Binding minemap.MineItems2[14].NearBombsCount}"/>
-
-        <Button Grid.Row="3" Grid.Column="0" Content="{Binding minemap.MineItems2[15].NearBombsCount}"/>
-        <Button Grid.Row="3" Grid.Column="1" Content="{Binding minemap.MineItems2[16].NearBombsCount}"/>
-        <Button Grid.Row="3" Grid.Column="2" Content="{Binding minemap.MineItems2[17].NearBombsCount}"/>
-        <Button Grid.Row="3" Grid.Column="3" Content="{Binding minemap.MineItems2[18].NearBombsCount}"/>
-        <Button Grid.Row="3" Grid.Column="4" Content="{Binding minemap.MineItems2[19].NearBombsCount}"/>
-
-        <Button Grid.Row="4" Grid.Column="0" Content="{Binding minemap.MineItems2[20].NearBombsCount}"/>
-        <Button Grid.Row="4" Grid.Column="1" Content="{Binding minemap.MineItems2[21].NearBombsCount}"/>
-        <Button Grid.Row="4" Grid.Column="2" Content="{Binding minemap.MineItems2[22].NearBombsCount}"/>
-        <Button Grid.Row="4" Grid.Column="3" Content="{Binding minemap.MineItems2[23].NearBombsCount}"/>
-        <Button Grid.Row="4" Grid.Column="4" Content="{Binding minemap.MineItems2[24].NearBombsCount}"/>-->
-
-    
-        
     </Grid>
 </UserControl>

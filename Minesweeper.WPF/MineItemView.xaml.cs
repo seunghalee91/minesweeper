@@ -16,13 +16,14 @@ using System.Windows.Shapes;
 namespace Minesweeper.WPF
 {
     /// <summary>
-    /// MineCellView.xaml에 대한 상호 작용 논리
+    /// MineItemView.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class MineCellView : UserControl
+    public partial class MineItemView : UserControl
     {
-        public MineCellView()
+        public MineItemView(MineItem mineItem)
         {
             InitializeComponent();
+            DataContext = new MineItemViewModel(mineItem);
         }
     }
 }

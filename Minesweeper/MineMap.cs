@@ -4,10 +4,10 @@ using System.Linq;
 
 namespace Minesweeper
 {
-    public class MineMap :ReactiveObject
+    public class MineMap
     {
         public MineItem[,] MineItems { get; set; }
-        public MineItem[] MineItems2 { get; set; }
+        //public MineItem[] MineItems2 { get; set; }
          
         public int Width { get; }
         public int Height { get; }
@@ -174,15 +174,15 @@ namespace Minesweeper
 
             return itemsCount == 0;
         }
-        public void ConvertMap()
-        {
-            int totalCount = Height * Width;
-            MineItems2 = new MineItem[totalCount];
+        //public void ConvertMap()
+        //{
+        //    int totalCount = Height * Width;
+        //    MineItems2 = new MineItem[totalCount];
             
-            for (int i = 0; i < totalCount; i++)
-            {
-                MineItems2[i] = MineItems[i / Height, i % Width];
-            }
-        }
+        //    for (int i = 0; i < totalCount; i++)
+        //    {
+        //        MineItems2[i] = MineItems[i / Height, i % Width];
+        //    }
+        //}
     }
 }

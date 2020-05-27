@@ -22,8 +22,8 @@ namespace Minesweeper.WPF
 
         public MainWindow(MainWindowViewModel mainviewModel)
         {
-            DataContext = mainviewModel;
             InitializeComponent();
+            DataContext = mainviewModel;
         }
     }
 }

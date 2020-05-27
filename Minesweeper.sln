@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Minesweeper.Tests", "Minesw
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minesweeper.WPF", "Minesweeper.WPF\Minesweeper.WPF.csproj", "{09B071B5-8C27-4C56-9CD5-68841BCF3F3D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minesweeper.WPF.Tests", "Minesweeper.WPF.Tests\Minesweeper.WPF.Tests.csproj", "{DD0F3BB9-1F21-42FA-AB7A-1B197EC56650}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{09B071B5-8C27-4C56-9CD5-68841BCF3F3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09B071B5-8C27-4C56-9CD5-68841BCF3F3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09B071B5-8C27-4C56-9CD5-68841BCF3F3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD0F3BB9-1F21-42FA-AB7A-1B197EC56650}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD0F3BB9-1F21-42FA-AB7A-1B197EC56650}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD0F3BB9-1F21-42FA-AB7A-1B197EC56650}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD0F3BB9-1F21-42FA-AB7A-1B197EC56650}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
