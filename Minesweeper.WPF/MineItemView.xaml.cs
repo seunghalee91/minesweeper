@@ -19,31 +19,8 @@ namespace Minesweeper.WPF
     /// <summary>
     /// MineItemView.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class MineItemView : UserControl, INotifyPropertyChanged
+    public partial class MineItemView : UserControl
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        virtual public void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private string _context = default(string);
-
-        public string ButtonText
-        {
-            get
-            {
-                return _context;
-            }
-            set
-            {
-                _context = value;
-                OnPropertyChanged(nameof(ButtonText));
-            }
-        }
-
-        public MineItem MineItem { get; set; }
-
         public MineItemView()
         {
             InitializeComponent();
@@ -52,14 +29,8 @@ namespace Minesweeper.WPF
         public MineItemView(MineItem mineItem) 
         {
             InitializeComponent();
-            DataContext = this;
-            MineItem = mineItem;
-            ButtonText = MineItem.ToString();
+            DataContext = new MineItemViewModel(mineItem);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

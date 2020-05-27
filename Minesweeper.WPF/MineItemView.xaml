@@ -3,8 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:Minesweeper.WPF"
              mc:Ignorable="d" 
              d:DesignHeight="70" d:DesignWidth="70">
-        <Button Content="{Binding ButtonText}" Padding="0" Click="Button_Click"></Button>
+        <Button Content="{Binding ButtonText}" Padding="0">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <i:InvokeCommandAction Command="{Binding ClickedCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
 </UserControl>
