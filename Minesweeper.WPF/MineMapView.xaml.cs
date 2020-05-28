@@ -25,7 +25,7 @@ namespace Minesweeper.WPF
         {
             InitializeComponent();
             var mineMapViewModel = new MineMapViewModel();
-            mineMapViewModel.PrepareGame();
+            //mineMapViewModel.PrepareGame();
             DataContext = mineMapViewModel;
         }
     }       

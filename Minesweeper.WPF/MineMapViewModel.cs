@@ -17,10 +17,7 @@ namespace Minesweeper.WPF
 
         protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
         public MineMap MineMap { get; private set; }
@@ -62,7 +59,6 @@ namespace Minesweeper.WPF
             BombCount = 3;
             MineMap = new MineMap(ColCount, RowCount);
         }
-
         public void PrepareGame()
         {
             MineMap.GenerateBombs(BombCount);
