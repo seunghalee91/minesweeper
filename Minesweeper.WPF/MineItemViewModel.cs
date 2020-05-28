@@ -15,10 +15,8 @@ namespace Minesweeper.WPF
         public DelegateCommand ClickCommand { get; set; }
         public void OnPropertyChanged(string propertyName)
         {
-            //if(PropertyChanged !=null)
-            //    PropertyChanged(this, new PropertyChangedEventArgs (propertyName));
-
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if(PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
         public MineItem MineItem;
 
@@ -39,22 +37,11 @@ namespace Minesweeper.WPF
         public MineItemViewModel(MineItem mineItem)
         {
             MineItem = mineItem;
-            Content = ".";
-            //ClickCommand = new DelegateCommand(_ => {
-            //    Content = mineItem.NearBombsCount.ToString();
-            //    });
-            ClickCommand = new DelegateCommand(_=>Content = SetCommandButtonContents(mineItem));
-        }
-        public string SetCommandButtonContents(MineItem mineItem)
-        {
-            if(mineItem.IsBomb)
-            {
-                return "*";
-            }
-            else
-            {
-                return mineItem.NearBombsCount.ToString();
-            }
+            Content = MineItem.ToString();
+            ClickCommand = new DelegateCommand(_=> {
+                    mineItem.IsCovered = false;
+                    Content = mineItem.ToString();
+                });
         }
     }
 }

@@ -14,7 +14,7 @@
         <!--<UniformGrid Grid.Column="{Binding ColCount}" Grid.Row="{Binding RowCount}">
             
         </UniformGrid>-->
-        <Grid.ColumnDefinitions>
+        <!--<Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -27,6 +27,6 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-        </Grid.RowDefinitions>
+        </Grid.RowDefinitions>-->
     </Grid>
 </UserControl>

@@ -73,7 +73,6 @@ namespace Minesweeper.WPF.Tests
                     actual.MineItemViewModels[i, j].Content.Should().Be(expect[i, j].ToString(), $"[{i}, {j}]");
                 }
             }
-
         }
     }
 }

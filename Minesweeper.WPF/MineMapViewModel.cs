@@ -56,11 +56,7 @@ namespace Minesweeper.WPF
 
         public void CreateMap(int width,int height)
         {
-            MineMap = new MineMap(RowCount, ColCount);
-        }
-        public void CreateButtons()
-        {
-            
+            MineMap = new MineMap(ColCount, RowCount);
         }
 
         public MineMapViewModel()
@@ -72,7 +68,15 @@ namespace Minesweeper.WPF
 
         public void CreateMineItemViewModels()
         {
-            throw new NotImplementedException();
+            MineItemViewModels = new MineItemViewModel[RowCount, ColCount];
+
+            for (int i=0;i< RowCount;i++)
+            {
+                for(int j=0;j< ColCount;j++)
+                {
+                    MineItemViewModels[i, j] = new MineItemViewModel(MineMap.MineItems[i, j]);
+                }
+            }
         }
     }
 }

@@ -21,41 +21,10 @@ namespace Minesweeper.WPF
     /// </summary>
     public partial class MineMapView : UserControl
     {
-        public MineMap minemap { get; private set; }
-        public MineItemView[,] button { get; set; }
-
         public MineMapView()
         {
             InitializeComponent();
             DataContext = new MineMapViewModel();
-            CreateMap();
-            CreateButtons();
         }
-
-        public void CreateMap()
-        {
-            minemap = new MineMap(5, 5);
-            minemap.GenerateBombs(1);
-            minemap.GenerateCountNearBombs();
-        }
-
-        public void CreateButtons()
-        {
-            button = new MineItemView[5, 5];
-
-            for (int i = 0; i < 5; i++)
-            {
-                for (int j = 0; j < 5; j++)
-                {
-                    button[i, j] = new MineItemView(minemap.MineItems[i, j]);
-                    button[i, j].Width = 70;
-                    button[i, j].Height = 70;
-                    Grid.SetColumn(button[i, j], i);
-                    Grid.SetRow(button[i, j], j);
-                    xmlgrid1.Children.Add(button[i, j]);
-                }
-            }
-        }
-
     }       
 }
