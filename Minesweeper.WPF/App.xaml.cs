@@ -27,8 +27,8 @@ namespace Minesweeper.WPF
 
         private void _createMainWindow()
         {
-            //MineCellViewModel cellModel = new MineCellViewModel();
             MineMapViewModel viewModel = new MineMapViewModel();
+            viewModel.PrepareGame();
             MainWindowViewModel mainViewModel = new MainWindowViewModel(viewModel);
             MainWindow mainWindow = new MainWindow(mainViewModel);
 

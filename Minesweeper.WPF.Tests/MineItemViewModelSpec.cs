@@ -50,12 +50,17 @@ namespace Minesweeper.WPF.Tests
         public void Should_Click_Bombs()
         {
             // arrange
-            var actual = new MineItemViewModel(new MineItem()
+            var mineItem = new MineItem()
             {
                 IsBomb = true
-            }, null);
+            };
+            var actual = new MineItemViewModel(mineItem, () =>
+            {
+                mineItem.IsCovered = false;
+            });
             // act
             actual.ClickCommand.Execute(null);
+            actual.Content = actual.MineItem.ToString();
             // assert
             actual.Content.Should().Be("*");
         }

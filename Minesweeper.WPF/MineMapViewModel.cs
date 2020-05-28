@@ -24,7 +24,6 @@ namespace Minesweeper.WPF
         }
         #endregion
         public MineMap MineMap { get; private set; }
-        public MineItemViewModel[,] MineItemViewModels { get; set; }
         public int _colCount { get; set; }
         public int _rowCount { get; set; }
 
@@ -53,21 +52,27 @@ namespace Minesweeper.WPF
             }
         }
 
-        public void CreateMap(int width,int height)
-        {
-            MineMap = new MineMap(ColCount, RowCount);
-        }
+        public int BombCount { get; private set; }
+        public ObservableCollection<MineItemViewModel> MineItemViewModels { get; set; } = new ObservableCollection<MineItemViewModel>();
 
         public MineMapViewModel()
         {
             ColCount = 5;
             RowCount = 5;
-            CreateMap(RowCount, ColCount);
+            BombCount = 3;
+            MineMap = new MineMap(ColCount, RowCount);
+        }
+
+        public void PrepareGame()
+        {
+            MineMap.GenerateBombs(BombCount);
+            MineMap.GenerateCountNearBombs();
+            CreateMineItemViewModels();
         }
 
         public void CreateMineItemViewModels()
         {
-            MineItemViewModels = new MineItemViewModel[RowCount, ColCount];
+            MineItemViewModels.Clear();
 
             for (int i=0;i< RowCount;i++)
             {
@@ -75,10 +80,10 @@ namespace Minesweeper.WPF
                 {
                     int x = j;
                     int y = i;
-                    MineItemViewModels[i, j] = new MineItemViewModel(MineMap.MineItems[i, j], () => 
+                    MineItemViewModels.Add(new MineItemViewModel(MineMap.MineItems[i, j], () => 
                     {
                         Click(y, x);
-                    });
+                    }));
                 }
             }
         }

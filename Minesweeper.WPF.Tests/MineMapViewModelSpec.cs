@@ -65,12 +65,12 @@ namespace Minesweeper.WPF.Tests
             actual.CreateMineItemViewModels();
 
             // assert
-            actual.MineItemViewModels[0, 0].ClickCommand.Execute(null);
+            actual.MineItemViewModels[0].ClickCommand.Execute(null);
             for (int i = 0; i < 5; i++)
             {
                 for (int j = 0; j < 5; j++)
                 {
-                    actual.MineItemViewModels[i, j].Content.Should().Be(expect[i, j].ToString(), $"[{i}, {j}]");
+                    actual.MineItemViewModels[i * 5 + j].Content.Should().Be(expect[i, j].ToString(), $"[{i}, {j}]");
                 }
             }
         }

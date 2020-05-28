@@ -7,26 +7,18 @@
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
              xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="800"
-             d:DataContext="{d:DesignInstance {x:Type local:MineMapViewModel}}">
+             d:DesignHeight="800" d:DesignWidth="800">
     
-    <Grid Name="xmlgrid1">
-        <!--<UniformGrid Grid.Column="{Binding ColCount}" Grid.Row="{Binding RowCount}">
-            
-        </UniformGrid>-->
-        <!--<Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>-->
-    </Grid>
+        <ItemsControl x:Name="MineMapControl" ItemsSource="{Binding MineItemViewModels}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <local:MineItemView DataContext="{Binding}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="{Binding ColCount}" Rows="{Binding RowCount}"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
 </UserControl>
