@@ -6,9 +6,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 
 
 namespace Minesweeper.WPF
@@ -27,7 +24,7 @@ namespace Minesweeper.WPF
         }
         #endregion
         public MineMap MineMap { get; private set; }
-        public MineItemView[,] Buttons { get; set; }
+        public MineItemViewModel[,] MineItemViewModels { get; set; }
         public int _colCount { get; set; }
         public int _rowCount { get; set; }
 
@@ -60,25 +57,10 @@ namespace Minesweeper.WPF
         public void CreateMap(int width,int height)
         {
             MineMap = new MineMap(RowCount, ColCount);
-            MineMap.GenerateBombs(3);
-            MineMap.GenerateCountNearBombs();
         }
         public void CreateButtons()
         {
-            Buttons = new MineItemView[5, 5];
             
-            for (int i = 0; i < 5; i++)
-            {
-                for (int j = 0; j < 5; j++)
-                {
-                    Buttons[i, j] = new MineItemView(MineMap.MineItems[i, j]);
-                    Buttons[i, j].Width = 70;
-                    Buttons[i, j].Height = 70;
-                    Grid.SetColumn(Buttons[i, j], i);
-                    Grid.SetRow(Buttons[i, j], j);
-                    //xmlgrid1.Children.Add(button[i, j]);
-                }
-            }
         }
 
         public MineMapViewModel()
@@ -86,6 +68,11 @@ namespace Minesweeper.WPF
             ColCount = 5;
             RowCount = 5;
             CreateMap(ColCount, RowCount);
+        }
+
+        public void CreateMineItemViewModels()
+        {
+            throw new NotImplementedException();
         }
     }
 }

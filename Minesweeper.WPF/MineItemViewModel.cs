@@ -20,6 +20,7 @@ namespace Minesweeper.WPF
 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        public MineItem MineItem;
 
         public string _content { get; set; }
 
@@ -37,6 +38,7 @@ namespace Minesweeper.WPF
         }
         public MineItemViewModel(MineItem mineItem)
         {
+            MineItem = mineItem;
             Content = ".";
             //ClickCommand = new DelegateCommand(_ => {
             //    Content = mineItem.NearBombsCount.ToString();
