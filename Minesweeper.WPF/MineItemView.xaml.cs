@@ -20,10 +20,9 @@ namespace Minesweeper.WPF
     /// </summary>
     public partial class MineItemView : UserControl
     {
-        public MineItemView(MineItem mineItem)
+        public MineItemView()
         {
             InitializeComponent();
-            DataContext = new MineItemViewModel(mineItem);
         }
     }
 }

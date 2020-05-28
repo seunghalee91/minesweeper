@@ -53,7 +53,6 @@ namespace Minesweeper.WPF
             }
         }
 
-
         public void CreateMap(int width,int height)
         {
             MineMap = new MineMap(ColCount, RowCount);
@@ -63,7 +62,7 @@ namespace Minesweeper.WPF
         {
             ColCount = 5;
             RowCount = 5;
-            CreateMap(ColCount, RowCount);
+            CreateMap(RowCount, ColCount);
         }
 
         public void CreateMineItemViewModels()
@@ -74,9 +73,20 @@ namespace Minesweeper.WPF
             {
                 for(int j=0;j< ColCount;j++)
                 {
-                    MineItemViewModels[i, j] = new MineItemViewModel(MineMap.MineItems[i, j]);
+                    int x = j;
+                    int y = i;
+                    MineItemViewModels[i, j] = new MineItemViewModel(MineMap.MineItems[i, j], () => 
+                    {
+                        Click(y, x);
+                    });
                 }
             }
+        }
+
+        private void Click(int y, int x)
+        {
+            MineMap.Click(y, x);
+            CreateMineItemViewModels();
         }
     }
 }

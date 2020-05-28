@@ -10,7 +10,8 @@ namespace Minesweeper.WPF.Tests
         public void Should_Before_Click()
         {
             // arrange
-            var actual = new MineItemViewModel(new MineItem());
+            var mineItem = new MineItem();
+            var actual = new MineItemViewModel(mineItem, () => { });
             // act
             // assert
             actual.Content.Should().Be(".");
@@ -29,12 +30,18 @@ namespace Minesweeper.WPF.Tests
         public void Should_Click(int nearBombsCount)
         {
             // arrange
-            var actual = new MineItemViewModel(new MineItem()
+            var mineItem = new MineItem()
             {
                 NearBombsCount = nearBombsCount
+            };
+
+            var actual = new MineItemViewModel(mineItem, () =>
+            {
+                mineItem.IsCovered = false;
             });
             // act
             actual.ClickCommand.Execute(null);
+            actual.Content = actual.MineItem.ToString();
             // assert
             actual.Content.Should().Be(nearBombsCount.ToString());
         }
@@ -46,7 +53,7 @@ namespace Minesweeper.WPF.Tests
             var actual = new MineItemViewModel(new MineItem()
             {
                 IsBomb = true
-            });
+            }, null);
             // act
             actual.ClickCommand.Execute(null);
             // assert

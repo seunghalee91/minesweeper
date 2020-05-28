@@ -11,13 +11,14 @@ namespace Minesweeper.WPF
     public class MineItemViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public DelegateCommand ClickCommand { get; set; }
         public void OnPropertyChanged(string propertyName)
         {
-            if(PropertyChanged != null)
+            if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public DelegateCommand ClickCommand { get; set; }
+        
         public MineItem MineItem;
 
         public string _content { get; set; }
@@ -34,14 +35,11 @@ namespace Minesweeper.WPF
                 OnPropertyChanged(nameof(Content));
             }
         }
-        public MineItemViewModel(MineItem mineItem)
+        public MineItemViewModel(MineItem mineItem, Action clickAction)
         {
             MineItem = mineItem;
             Content = MineItem.ToString();
-            ClickCommand = new DelegateCommand(_=> {
-                    mineItem.IsCovered = false;
-                    Content = mineItem.ToString();
-                });
+            ClickCommand = new DelegateCommand(_ => clickAction());
         }
     }
 }
