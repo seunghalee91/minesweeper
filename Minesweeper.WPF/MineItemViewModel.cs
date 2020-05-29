@@ -17,7 +17,6 @@ namespace Minesweeper.WPF
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
         private string _content;
-        //private bool _unCoveredMine;
         public string Content
         {
             get
@@ -30,18 +29,6 @@ namespace Minesweeper.WPF
                 OnPropertyChanged(nameof(Content));
             }
         }
-        //public bool UnCoveredMine
-        //{
-        //    get
-        //    {
-        //        return _unCoveredMine;
-        //    }
-        //    set
-        //    {
-        //        _unCoveredMine = value;
-        //        OnPropertyChanged(nameof(UnCoveredMine));
-        //    }
-        //}
         public MineItem MineItem;
         public DelegateCommand ClickCommand { get; set; }
         public DelegateCommand ResetCommand { get; set; }

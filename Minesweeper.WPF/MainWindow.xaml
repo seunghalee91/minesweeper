@@ -22,7 +22,7 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </Button>
-        
-        <local:MineMapView DataContext="{Binding MineMapViewModel}" Grid.Row="1"/>
+
+        <local:MineMapView DataContext="{Binding MineMapViewModels}" Grid.Row="1"/>
     </Grid>
 </Window>

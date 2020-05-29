@@ -30,7 +30,6 @@ namespace Minesweeper.WPF
             MineMapViewModel viewModel = new MineMapViewModel();
             MainWindowViewModel mainViewModel = new MainWindowViewModel(viewModel);
             MainWindow mainWindow = new MainWindow(mainViewModel);
-            viewModel.PrepareGame();
             mainWindow.Show();
         }
 
