@@ -16,13 +16,8 @@ namespace Minesweeper.WPF
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        public DelegateCommand ClickCommand { get; set; }
-        
-        public MineItem MineItem;
-
-        public string _content { get; set; }
-
+        private string _content;
+        //private bool _unCoveredMine;
         public string Content
         {
             get
@@ -35,6 +30,21 @@ namespace Minesweeper.WPF
                 OnPropertyChanged(nameof(Content));
             }
         }
+        //public bool UnCoveredMine
+        //{
+        //    get
+        //    {
+        //        return _unCoveredMine;
+        //    }
+        //    set
+        //    {
+        //        _unCoveredMine = value;
+        //        OnPropertyChanged(nameof(UnCoveredMine));
+        //    }
+        //}
+        public MineItem MineItem;
+        public DelegateCommand ClickCommand { get; set; }
+        public DelegateCommand ResetCommand { get; set; }
         public MineItemViewModel(MineItem mineItem, Action clickAction)
         {
             MineItem = mineItem;

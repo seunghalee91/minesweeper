@@ -6,7 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows;
 
 namespace Minesweeper.WPF
 {
@@ -20,10 +20,8 @@ namespace Minesweeper.WPF
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
-        public MineMap MineMap { get; private set; }
         public int _colCount { get; set; }
         public int _rowCount { get; set; }
-
         public int ColCount
         {
             get
@@ -48,10 +46,9 @@ namespace Minesweeper.WPF
                 OnPropertyChanged();
             }
         }
-
         public int BombCount { get; private set; }
+        public MineMap MineMap { get; private set; }
         public ObservableCollection<MineItemViewModel> MineItemViewModels { get; set; } = new ObservableCollection<MineItemViewModel>();
-
         public MineMapViewModel()
         {
             ColCount = 5;
@@ -65,29 +62,42 @@ namespace Minesweeper.WPF
             MineMap.GenerateCountNearBombs();
             CreateMineItemViewModels();
         }
-
         public void CreateMineItemViewModels()
         {
             MineItemViewModels.Clear();
-
-            for (int i=0;i< RowCount;i++)
+            CheckEndGame();
+            for (int i = 0; i < RowCount; i++)
             {
-                for(int j=0;j< ColCount;j++)
+                for (int j = 0; j < ColCount; j++)
                 {
                     int x = j;
                     int y = i;
-                    MineItemViewModels.Add(new MineItemViewModel(MineMap.MineItems[i, j], () => 
+                    MineItemViewModels.Add(new MineItemViewModel(MineMap.MineItems[i, j], () =>
                     {
                         Click(y, x);
                     }));
                 }
             }
         }
-
         private void Click(int y, int x)
         {
             MineMap.Click(y, x);
             CreateMineItemViewModels();
+        }
+
+        private void CheckEndGame()
+        {
+            if (MineMap.CheckEndGame())
+            {
+                MessageBox.Show("Boomb");
+                for (int i = 0; i < RowCount; i++)
+                {
+                    for (int j = 0; j < ColCount; j++)
+                    {
+                        this.MineMap.MineItems[i, j].IsCovered = false;
+                    }
+                }
+            }
         }
     }
 }

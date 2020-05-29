@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:Minesweeper.WPF"
              mc:Ignorable="d" >
     <Grid>
-        <Button Padding="0" Content="{Binding Content}">
+        <Button Padding="0" Content="{Binding Content}" IsEnabled="{Binding Clickable}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="Click">
                     <i:InvokeCommandAction Command="{Binding ClickCommand}"/>
