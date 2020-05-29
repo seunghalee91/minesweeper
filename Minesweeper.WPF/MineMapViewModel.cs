@@ -47,19 +47,19 @@ namespace Minesweeper.WPF
             }
         }
         public int BombCount { get; private set; }
+        public string ResetContent { get; set; } = "map Reset";
         public MineMap MineMap { get; set; }    
-        
         public ObservableCollection<MineItemViewModel> MineItemViewModels { get; set; } = new ObservableCollection<MineItemViewModel>();
         public MineMapViewModel()
         {
             RowCount = 5;
             ColCount = 5;
             BombCount = 3;
-            //MineMap = new MineMap(RowCount, ColCount);   //For TEST pass
+            MineMap = new MineMap(RowCount, ColCount);   //For TEST pass
         }
         public void PrepareGame()
         {
-            MineMap = new MineMap(ColCount, RowCount);
+            //MineMap = new MineMap(ColCount, RowCount);
             MineMap.GenerateBombs(BombCount);
             MineMap.GenerateCountNearBombs();
             CreateMineItemViewModels();

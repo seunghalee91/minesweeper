@@ -27,10 +27,12 @@ namespace Minesweeper.WPF
 
         private void _createMainWindow()
         {
+            //MineMapView MineMapView = new MineMapView();
             MineMapViewModel viewModel = new MineMapViewModel();
             MainWindowViewModel mainViewModel = new MainWindowViewModel(viewModel);
             MainWindow mainWindow = new MainWindow(mainViewModel);
             mainWindow.Show();
+
         }
 
     }

@@ -25,5 +25,10 @@ namespace Minesweeper.WPF
             mainviewModel.MineMapViewModels.PrepareGame();
             DataContext = mainviewModel;
         }
+
+        private void Button_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
     }
 }

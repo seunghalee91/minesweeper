@@ -18,8 +18,8 @@ namespace Minesweeper.WPF
         }
         public MineMapViewModel MineMapViewModels { get; set; }
 
-        public string Content { get; set; } = "Reset";
-        public DelegateCommand ResetCommand { get; set; }       
+        public string ResetContent { get; set; } = "Main Reset";
+        public DelegateCommand ResetCommand { get; set; } 
         public MainWindowViewModel(MineMapViewModel mineMapViewModel)
         {
             MineMapViewModels = mineMapViewModel;
@@ -29,7 +29,6 @@ namespace Minesweeper.WPF
         private void ResetAction()
         {
             #region  For Pass TEST
-            /*
             int row = MineMapViewModels.RowCount;
             int col = MineMapViewModels.ColCount;
             for (int i=0;i<row;i++)
@@ -40,7 +39,6 @@ namespace Minesweeper.WPF
                     MineMapViewModels.MineMap = new MineMap(row, col); 
                 }
             }
-            */
             #endregion
 
             MineMapViewModels.PrepareGame();
