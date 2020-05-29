@@ -48,7 +48,6 @@ namespace Minesweeper.WPF
             }
         }
         public string ResetContent { get; set; } = "Item Reset";
-
         public MineItem MineItem;
         public DelegateCommand ClickCommand { get; set; }
         public MineItemViewModel(MineItem mineItem, Action clickAction)
@@ -56,6 +55,9 @@ namespace Minesweeper.WPF
             MineItem = mineItem;
             Content = MineItem.ToString();
             ClickCommand = new DelegateCommand(_ => clickAction());
+            
         }
+
+
     }
 }

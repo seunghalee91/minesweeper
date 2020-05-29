@@ -23,9 +23,9 @@
                         <i:InvokeCommandAction Command="{Binding ResetCommand}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-            </Button>
+            </Button>-->
 
-        <local:MineMapView DataContext="{Binding }" Grid.Row="1">
+        <!--<local:MineMapView DataContext="{Binding }" Grid.Row="1">
             <Button Padding="0" Content="{Binding ResetContent}" IsEnabled="{Binding EnableButton}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
@@ -33,9 +33,9 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>
-        </local:MineMapView>
+        </local:MineMapView>-->
 
-        <local:MineMapView DataContext="{Binding MineMapViewModels}" Grid.Row="2">
+        <!--<local:MineMapView DataContext="{Binding MineMapViewModels}" Grid.Row="2">
             <Button Padding="0" Content="{Binding ResetContent}" IsEnabled="{Binding EnableButton}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
@@ -43,20 +43,20 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>
-        </local:MineMapView>
+        </local:MineMapView>-->
 
-        
-        <local:MineItemView DataContext="{Binding MineMapViewModels}" Grid.Row="3">
-            <Button Padding="0" Content="{Binding ResetContent}" IsEnabled="{Binding EnableButton}">
+
+        <local:MineItemView DataContext="{Binding MineMapViewModels}" Grid.Row="0">
+            <Button Width="80" Padding="0" Content="{Binding ResetContent}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
                         <i:InvokeCommandAction Command="{Binding ResetCommand}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>
-        </local:MineItemView>-->
+        </local:MineItemView>
 
-        <local:MineMapView DataContext="{Binding MineMapViewModels}" Grid.Row="0">
+        <!--<local:MineMapView DataContext="{Binding MineMapViewModels}" Grid.Row="0">
             <local:MineItemView DataContext="{Binding MineItemViewModels}" >
                 <Button Width="70" Padding="0" Content="{Binding ResetContent}" IsEnabled="{Binding EnableButton}">
                     <i:Interaction.Triggers>
@@ -66,7 +66,7 @@
                     </i:Interaction.Triggers>
                 </Button>
             </local:MineItemView>
-        </local:MineMapView>
+        </local:MineMapView>-->
         
 
         <!--<local:MineItemView DataContext="{Binding MineMapViewModels}" Grid.Row="5">

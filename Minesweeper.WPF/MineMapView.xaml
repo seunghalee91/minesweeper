@@ -17,7 +17,7 @@
             </ItemsControl.ItemTemplate>
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <UniformGrid Columns="{Binding ColCount}" Rows="{Binding RowCount}"/>
+                <UniformGrid Columns="{Binding ColCount}" Rows="{Binding RowCount}" IsEnabled="{Binding EnableButton}"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>

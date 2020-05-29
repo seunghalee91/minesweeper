@@ -48,14 +48,29 @@ namespace Minesweeper.WPF
         }
         public int BombCount { get; private set; }
         public string ResetContent { get; set; } = "map Reset";
+        public DelegateCommand ResetCommand { get; set; }
+        private string _enableButton { get; set; }
         public MineMap MineMap { get; set; }    
         public ObservableCollection<MineItemViewModel> MineItemViewModels { get; set; } = new ObservableCollection<MineItemViewModel>();
+        public string EnableButton
+        {
+            get
+            {
+                return _enableButton;
+            }
+            set
+            {
+                _enableButton = value;
+                OnPropertyChanged(nameof(EnableButton));
+            }
+        }
         public MineMapViewModel()
         {
             RowCount = 5;
             ColCount = 5;
             BombCount = 3;
             MineMap = new MineMap(RowCount, ColCount);   //For TEST pass
+            ResetCommand = new DelegateCommand(_ => ResetAction());
         }
         public void PrepareGame()
         {
@@ -92,6 +107,7 @@ namespace Minesweeper.WPF
             if (MineMap.CheckEndGame())
             {
                 MessageBox.Show("Boomb");
+                EnableButton = "false";
                 for (int i = 0; i < RowCount; i++)
                 {
                     for (int j = 0; j < ColCount; j++)
@@ -100,6 +116,24 @@ namespace Minesweeper.WPF
                     }
                 }
             }
+        }
+        private void ResetAction()
+        {
+            #region  For Pass TEST
+            int row = RowCount;
+            int col = ColCount;
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < col; j++)
+                {
+                    MineMap.MineItems[i, j] = null;
+                    MineMap = new MineMap(row, col);
+                }
+            }
+            #endregion
+
+            PrepareGame();
+            EnableButton = "true";
         }
     }
 }
