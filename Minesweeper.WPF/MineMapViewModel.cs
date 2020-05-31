@@ -2,9 +2,11 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Timers;
 
 namespace Minesweeper.WPF
 {
+    
     public class MineMapViewModel : INotifyPropertyChanged
     {
         #region PropertyChanged
@@ -15,6 +17,7 @@ namespace Minesweeper.WPF
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+        private static Timer GameTimer { get; set; } = new Timer(1000);
         public int _colCount { get; set; }
         public int _rowCount { get; set; }
         public int ColCount
@@ -65,6 +68,8 @@ namespace Minesweeper.WPF
             ColCount = 5;
             BombCount = 3;
             MineMap = new MineMap(RowCount, ColCount);   //For TEST pass
+            GameTimer.Start();
+            Console.WriteLine(GameTimer);
             ResetCommand = new DelegateCommand(_ => ResetAction());
         }
         public void PrepareGame()
@@ -101,7 +106,7 @@ namespace Minesweeper.WPF
         {
             if (MineMap.CheckEndGame())
             {
-                MessageBox.Show("Boomb");
+                
                 EnableButton = "false";
                 for (int i = 0; i < RowCount; i++)
                 {

@@ -29,7 +29,7 @@ namespace Minesweeper
         {
             if(IsCovered)
             {
-                return ".";
+                return "";
             }
 
             if (IsBomb)

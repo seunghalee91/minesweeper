@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:Minesweeper.WPF"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="500"
+        Title="MainWindow" Height="400" Width="400"
         d:DataContext="{d:DesignInstance {x:Type local:MainWindowViewModel}}">
 
-    
+
     <Grid Margin="3">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -17,7 +17,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-            <!--<Button Padding="0" Content="{Binding ResetContent}" IsEnabled="{Binding EnableButton}">
+        <!--<Button Padding="0" Content="{Binding ResetContent}" IsEnabled="{Binding EnableButton}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
                         <i:InvokeCommandAction Command="{Binding ResetCommand}"/>
@@ -47,7 +47,12 @@
 
 
         <local:MineItemView DataContext="{Binding MineMapViewModels}" Grid.Row="0">
-            <Button Width="80" Padding="0" Content="{Binding ResetContent}">
+            <Button Width="80" Padding="0" Content="{Binding ResetContent}" FontSize="15" FontWeight="Bold">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="2"/>
+                    </Style>
+                </Button.Resources>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
                         <i:InvokeCommandAction Command="{Binding ResetCommand}"/>
@@ -55,7 +60,16 @@
                 </i:Interaction.Triggers>
             </Button>
         </local:MineItemView>
-
+        <!--Teimer-->
+        <local:MineItemView DataContext="{Binding MineMapViewModels}">
+        <TextBox Width ="70" Margin="26,5,291.6,4.6" FontSize="25" 
+                 Text="1233" BorderBrush="Gray" 
+                 Foreground="Red" FontWeight="Bold"
+                 TextAlignment="Right"
+                 VerticalContentAlignment="Center">
+            
+        </TextBox>
+        </local:MineItemView>
         <!--<local:MineMapView DataContext="{Binding MineMapViewModels}" Grid.Row="0">
             <local:MineItemView DataContext="{Binding MineItemViewModels}" >
                 <Button Width="70" Padding="0" Content="{Binding ResetContent}" IsEnabled="{Binding EnableButton}">
@@ -67,7 +81,7 @@
                 </Button>
             </local:MineItemView>
         </local:MineMapView>-->
-        
+
 
         <!--<local:MineItemView DataContext="{Binding MineMapViewModels}" Grid.Row="5">
             <local:MineMapView DataContext="{Binding MineItemViewModels}" >
@@ -81,7 +95,7 @@
             </local:MineMapView>
         </local:MineItemView>-->
 
-        <local:MineMapView DataContext="{Binding MineMapViewModels}" Grid.Row="6"/>
+        <local:MineMapView DataContext="{Binding MineMapViewModels}" Grid.Row="2" HorizontalAlignment="Right" Margin="0,40,40,40" Width="306" />
 
         <!-- XXXXXXXXX
         <local:MineMapView DataContext="{Binding MineItemViewModels}" Grid.Row="4">
