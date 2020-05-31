@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.ComponentModel;
 
 namespace Minesweeper.WPF
 {
@@ -18,30 +12,9 @@ namespace Minesweeper.WPF
         }
         public MineMapViewModel MineMapViewModels { get; set; }
 
-        //public string ResetContent { get; set; } = "Main Reset";
-        //public DelegateCommand ResetCommand { get; set; } 
         public MainWindowViewModel(MineMapViewModel mineMapViewModel)
         {
             MineMapViewModels = mineMapViewModel;
-            //ResetCommand = new DelegateCommand(_ => ResetAction());
         }
-
-        //private void ResetAction()
-        //{
-        //    #region  For Pass TEST
-        //    int row = MineMapViewModels.RowCount;
-        //    int col = MineMapViewModels.ColCount;
-        //    for (int i=0;i<row;i++)
-        //    {
-        //        for(int j=0;j<col;j++)
-        //        {
-        //            MineMapViewModels.MineMap.MineItems[i,j] = null;
-        //            MineMapViewModels.MineMap = new MineMap(row, col); 
-        //        }
-        //    }
-        //    #endregion
-
-        //    MineMapViewModels.PrepareGame();
-        //}
     }
 }
