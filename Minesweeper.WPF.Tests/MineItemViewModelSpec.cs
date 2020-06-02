@@ -14,7 +14,7 @@ namespace Minesweeper.WPF.Tests
             var actual = new MineItemViewModel(mineItem, () => { });
             // act
             // assert
-            actual.Content.Should().Be(".");
+            actual.Content.Should().Be(" ");
         }
 
         [Theory]
