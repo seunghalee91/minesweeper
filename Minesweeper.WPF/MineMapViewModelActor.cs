@@ -15,17 +15,16 @@ namespace Minesweeper.WPF
         {
             ViewModel = viewModel;
             Receive<string>(value => Handle(value));
-
+        }
+        public static Props Props(IMineMapViewModel viewModel)
+        {
+            return Akka.Actor.Props.Create(
+                () => new MineMapViewModelActor(viewModel));
         }
         public void Handle(string value)
         {
             if (value == "Hello")
                 Sender.Tell("World");
-        }
-
-        public static Props Props(IMineMapViewModel viewModel)
-        {
-            return Akka.Actor.Props.Create(() => new MineMapViewModelActor(viewModel));
         }
     }
 }

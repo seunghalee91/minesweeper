@@ -30,7 +30,6 @@ namespace Minesweeper.WPF
         private void _createMainWindow()
         {
             ActorSystem system = ActorSystem.Create("minesweeper");
-
             MineMapViewModel viewModel = new MineMapViewModel(system, vm => MineMapViewModelActor.Props(vm));
             MainWindowViewModel mainViewModel = new MainWindowViewModel(viewModel);
             MainWindow mainWindow = new MainWindow(mainViewModel);

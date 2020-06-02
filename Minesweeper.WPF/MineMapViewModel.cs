@@ -13,8 +13,7 @@ namespace Minesweeper.WPF
     {
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = null)
+        protected void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
@@ -66,7 +65,6 @@ namespace Minesweeper.WPF
                 OnPropertyChanged(nameof(BoombStatue));
             }
         }
-
         public string EnableButton
         {
             get
@@ -79,12 +77,10 @@ namespace Minesweeper.WPF
                 OnPropertyChanged(nameof(EnableButton));
             }
         }
-
         //public MineMapViewModel(ActorSystem system, Props props)
         public MineMapViewModel(ActorSystem system, Func<IMineMapViewModel, Props> propsFunc)
         {
             System = system;
-            //Actor = System.ActorOf(MineMapViewModelActor.Props(this));
             var props = propsFunc?.Invoke(this);
             Actor = System?.ActorOf(props);
 
@@ -92,7 +88,7 @@ namespace Minesweeper.WPF
             ColCount = 5;
             BombCount = 3;
             MineMap = new MineMap(RowCount, ColCount);  
-            ResetCommand = new DelegateCommand(_ => ResetAction());
+            ResetCommand = new DelegateCommand( _ => ResetAction());
         }
         public void PrepareGame()
         {
@@ -122,7 +118,6 @@ namespace Minesweeper.WPF
             MineMap.Click(y, x);
             CreateMineItemViewModels();
         }
-
         private void CheckEndGame()
         {
             if (MineMap.CheckEndGame())
