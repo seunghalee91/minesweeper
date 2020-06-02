@@ -9,6 +9,7 @@ namespace Minesweeper.WPF
             InitializeComponent();
             mainviewModel.MineMapViewModels.PrepareGame();
             DataContext = mainviewModel;
+
         }
     }
 }

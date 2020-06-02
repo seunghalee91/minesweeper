@@ -3,11 +3,13 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Timers;
+using Akka.Actor;
+using System;
 
 namespace Minesweeper.WPF
 {
     
-    public class MineMapViewModel : INotifyPropertyChanged
+    public class MineMapViewModel : INotifyPropertyChanged, IMineMapViewModel
     {
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
@@ -17,6 +19,8 @@ namespace Minesweeper.WPF
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+        ActorSystem System { get; }
+        IActorRef Actor { get; }
         public int _colCount { get; set; }
         public int _rowCount { get; set; }
         public int BombCount { get; private set; }
@@ -75,8 +79,15 @@ namespace Minesweeper.WPF
                 OnPropertyChanged(nameof(EnableButton));
             }
         }
-        public MineMapViewModel()
+
+        //public MineMapViewModel(ActorSystem system, Props props)
+        public MineMapViewModel(ActorSystem system, Func<IMineMapViewModel, Props> propsFunc)
         {
+            System = system;
+            //Actor = System.ActorOf(MineMapViewModelActor.Props(this));
+            var props = propsFunc?.Invoke(this);
+            Actor = System?.ActorOf(props);
+
             RowCount = 5;
             ColCount = 5;
             BombCount = 3;

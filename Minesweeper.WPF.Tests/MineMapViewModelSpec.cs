@@ -53,7 +53,7 @@ namespace Minesweeper.WPF.Tests
                 },
             };
 
-            var actual = new MineMapViewModel();
+            var actual = new MineMapViewModel(null, null);
 
             actual.MineMap.MineItems[0, 3].IsBomb = true;
             actual.MineMap.MineItems[1, 2].IsBomb = true;

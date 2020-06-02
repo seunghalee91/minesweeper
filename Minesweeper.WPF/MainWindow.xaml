@@ -31,19 +31,6 @@
                 </i:Interaction.Triggers>
             </Button>
         </local:MineItemView>
-        <!--Timer-->
-        <!--
-        <local:MineItemView DataContext="{Binding MineMapViewModels}">
-        <TextBox Width ="70" Margin="26,5,291.6,4.6" FontSize="25" 
-                 Text="1233" BorderBrush="Gray" 
-                 Foreground="Red" FontWeight="Bold"
-                 TextAlignment="Right"
-                 VerticalContentAlignment="Center">
-            
-        </TextBox>
-        </local:MineItemView>
-        -->
-
         <local:MineMapView DataContext="{Binding MineMapViewModels}" Grid.Row="2" HorizontalAlignment="Right" Margin="0,40,40,40" Width="306" />
         <local:MineMapView DataContext="{Binding MineMapViewModels}" Grid.Row="2" HorizontalAlignment="Right" Margin="0,40,40,40" Width="306" >
             <Image Source="Image/boomb.png" Visibility="{Binding BoombStatue}"/>

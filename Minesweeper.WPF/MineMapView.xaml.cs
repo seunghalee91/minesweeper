@@ -7,7 +7,6 @@ namespace Minesweeper.WPF
         public MineMapView()
         {
             InitializeComponent();
-            DataContext =new MineMapViewModel();
         }
     }       
 }
