@@ -42,11 +42,6 @@ namespace Minesweeper.WPF
                 }
             }
         }
-<<<<<<< HEAD
-=======
-        public string ResetContent { get; set; } = "Item Reset";
-        private string _buttonColor { get; set; }
->>>>>>> 9136e4238fb14ec7c4b1d9f060ad60ca725bbeb2
         public MineItem MineItem;
         public DelegateCommand ClickCommand { get; set; }
         public MineItemViewModel(MineItem mineItem, Action clickAction)
@@ -55,22 +50,5 @@ namespace Minesweeper.WPF
             Content = MineItem.ToString();
             ClickCommand = new DelegateCommand(_ => clickAction());
         }
-<<<<<<< HEAD
-=======
-
-        public string ButtonColor
-        {
-            get
-            {
-                return _buttonColor;
-            }
-            set
-            {
-                _buttonColor = value;
-                OnPropertyChanged(nameof(ButtonColor));
-            }
-        }
-
->>>>>>> 9136e4238fb14ec7c4b1d9f060ad60ca725bbeb2
     }
 }

@@ -16,9 +16,5 @@ namespace Minesweeper.WPF
         {
             MineMapViewModels = mineMapViewModel;
         }
-<<<<<<< HEAD
-=======
-        
->>>>>>> 9136e4238fb14ec7c4b1d9f060ad60ca725bbeb2
     }
 }

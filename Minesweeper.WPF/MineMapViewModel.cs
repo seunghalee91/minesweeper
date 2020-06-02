@@ -17,9 +17,15 @@ namespace Minesweeper.WPF
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
-        private static Timer GameTimer { get; set; } = new Timer(1000);
         public int _colCount { get; set; }
         public int _rowCount { get; set; }
+        public int BombCount { get; private set; }
+        public string ResetContent { get; set; } = "map Reset";
+        public string _boombStatue { get; set; } = "Collapsed";
+        public DelegateCommand ResetCommand { get; set; }
+        private string _enableButton { get; set; }
+        public MineMap MineMap { get; set; }    
+        public ObservableCollection<MineItemViewModel> MineItemViewModels { get; set; } = new ObservableCollection<MineItemViewModel>();
         public int ColCount
         {
             get
@@ -44,12 +50,19 @@ namespace Minesweeper.WPF
                 OnPropertyChanged();
             }
         }
-        public int BombCount { get; private set; }
-        public string ResetContent { get; set; } = "map Reset";
-        public DelegateCommand ResetCommand { get; set; }
-        private string _enableButton { get; set; }
-        public MineMap MineMap { get; set; }    
-        public ObservableCollection<MineItemViewModel> MineItemViewModels { get; set; } = new ObservableCollection<MineItemViewModel>();
+        public string BoombStatue
+        {
+            get
+            {
+                return _boombStatue;
+            }
+            set
+            {
+                _boombStatue = value;
+                OnPropertyChanged(nameof(BoombStatue));
+            }
+        }
+
         public string EnableButton
         {
             get
@@ -67,14 +80,11 @@ namespace Minesweeper.WPF
             RowCount = 5;
             ColCount = 5;
             BombCount = 3;
-            MineMap = new MineMap(RowCount, ColCount);   //For TEST pass
-            GameTimer.Start();
-            Console.WriteLine(GameTimer);
+            MineMap = new MineMap(RowCount, ColCount);  
             ResetCommand = new DelegateCommand(_ => ResetAction());
         }
         public void PrepareGame()
         {
-            //MineMap = new MineMap(ColCount, RowCount);
             MineMap.GenerateBombs(BombCount);
             MineMap.GenerateCountNearBombs();
             CreateMineItemViewModels();
@@ -106,8 +116,8 @@ namespace Minesweeper.WPF
         {
             if (MineMap.CheckEndGame())
             {
-                
                 EnableButton = "false";
+                BoombStatue = "Visible";
                 for (int i = 0; i < RowCount; i++)
                 {
                     for (int j = 0; j < ColCount; j++)
@@ -119,7 +129,6 @@ namespace Minesweeper.WPF
         }
         private void ResetAction()
         {
-            #region  For Pass TEST
             int row = RowCount;
             int col = ColCount;
             for (int i = 0; i < row; i++)
@@ -130,10 +139,10 @@ namespace Minesweeper.WPF
                     MineMap = new MineMap(row, col);
                 }
             }
-            #endregion
 
             PrepareGame();
             EnableButton = "true";
+            BoombStatue = "Hidden";
         }
     }
 }

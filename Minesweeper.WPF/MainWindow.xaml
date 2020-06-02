@@ -16,36 +16,7 @@
             <RowDefinition Height="5"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-
-        <!--<Button Padding="0" Content="{Binding ResetContent}" IsEnabled="{Binding EnableButton}">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Click">
-                        <i:InvokeCommandAction Command="{Binding ResetCommand}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </Button>-->
-
-        <!--<local:MineMapView DataContext="{Binding }" Grid.Row="1">
-            <Button Padding="0" Content="{Binding ResetContent}" IsEnabled="{Binding EnableButton}">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Click">
-                        <i:InvokeCommandAction Command="{Binding ResetCommand}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </Button>
-        </local:MineMapView>-->
-
-        <!--<local:MineMapView DataContext="{Binding MineMapViewModels}" Grid.Row="2">
-            <Button Padding="0" Content="{Binding ResetContent}" IsEnabled="{Binding EnableButton}">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Click">
-                        <i:InvokeCommandAction Command="{Binding ResetCommand}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </Button>
-        </local:MineMapView>-->
-
-
+      
         <local:MineItemView DataContext="{Binding MineMapViewModels}" Grid.Row="0">
             <Button Width="80" Padding="0" Content="{Binding ResetContent}" FontSize="15" FontWeight="Bold">
                 <Button.Resources>
@@ -60,7 +31,8 @@
                 </i:Interaction.Triggers>
             </Button>
         </local:MineItemView>
-        <!--Teimer-->
+        <!--Timer-->
+        <!--
         <local:MineItemView DataContext="{Binding MineMapViewModels}">
         <TextBox Width ="70" Margin="26,5,291.6,4.6" FontSize="25" 
                  Text="1233" BorderBrush="Gray" 
@@ -70,52 +42,13 @@
             
         </TextBox>
         </local:MineItemView>
-        <!--<local:MineMapView DataContext="{Binding MineMapViewModels}" Grid.Row="0">
-            <local:MineItemView DataContext="{Binding MineItemViewModels}" >
-                <Button Width="70" Padding="0" Content="{Binding ResetContent}" IsEnabled="{Binding EnableButton}">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="Click">
-                            <i:InvokeCommandAction Command="{Binding ResetCommand}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </Button>
-            </local:MineItemView>
-        </local:MineMapView>-->
-
-
-        <!--<local:MineItemView DataContext="{Binding MineMapViewModels}" Grid.Row="5">
-            <local:MineMapView DataContext="{Binding MineItemViewModels}" >
-                <Button Padding="0" Content="{Binding ResetContent}" IsEnabled="{Binding EnableButton}">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="Click">
-                            <i:InvokeCommandAction Command="{Binding ResetCommand}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </Button>
-            </local:MineMapView>
-        </local:MineItemView>-->
+        -->
 
         <local:MineMapView DataContext="{Binding MineMapViewModels}" Grid.Row="2" HorizontalAlignment="Right" Margin="0,40,40,40" Width="306" />
+        <local:MineMapView DataContext="{Binding MineMapViewModels}" Grid.Row="2" HorizontalAlignment="Right" Margin="0,40,40,40" Width="306" >
+            <Image Source="Image/boomb.png" Visibility="{Binding BoombStatue}"/>
+        </local:MineMapView>
 
-        <!-- XXXXXXXXX
-        <local:MineMapView DataContext="{Binding MineItemViewModels}" Grid.Row="4">
-            <Button Padding="0" Content="{Binding ResetContent}" IsEnabled="{Binding EnableButton}">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Click">
-                        <i:InvokeCommandAction Command="{Binding ResetCommand}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </Button>
-        </local:MineMapView>-->
-        <!--<local:MineItemView DataContext="{Binding MineItemViewModels}" Grid.Row="5">
-            <Button Padding="0" Content="{Binding ResetContent}" IsEnabled="{Binding EnableButton}">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Click">
-                        <i:InvokeCommandAction Command="{Binding ResetCommand}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </Button>
-        </local:MineItemView>
-        -->
+
     </Grid>
 </Window>
