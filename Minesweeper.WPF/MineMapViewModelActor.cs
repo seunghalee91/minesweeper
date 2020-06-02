@@ -14,6 +14,13 @@ namespace Minesweeper.WPF
         public MineMapViewModelActor(IMineMapViewModel viewModel)
         {
             ViewModel = viewModel;
+            Receive<string>(value => Handle(value));
+
+        }
+        public void Handle(string value)
+        {
+            if (value == "Hello")
+                Sender.Tell("World");
         }
 
         public static Props Props(IMineMapViewModel viewModel)
