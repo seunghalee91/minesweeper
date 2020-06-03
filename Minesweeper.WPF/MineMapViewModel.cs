@@ -120,7 +120,7 @@ namespace Minesweeper.WPF
                 width: 5,
                 height: 5,
                 bombsCount: 4,
-                MineItemViewModels.ToList<IMineItemView>()
+                MineItemViewModels.ToList<IMineItemViewModel>()
                 ));
 
             EnableButton = "true";

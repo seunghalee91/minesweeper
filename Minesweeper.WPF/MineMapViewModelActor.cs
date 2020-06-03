@@ -12,8 +12,8 @@ namespace Minesweeper.WPF
         public int Width { get; }
         public int Height { get; }
         public int BombsCount { get; }
-        public IReadOnlyCollection<IMineItemView> MineItemViews { get; }
-        public MineMapCreateMessage(int width, int height, int bombsCount, List<IMineItemView> mineItemViews)
+        public IReadOnlyCollection<IMineItemViewModel> MineItemViews { get; }
+        public MineMapCreateMessage(int width, int height, int bombsCount, List<IMineItemViewModel> mineItemViews)
         {
             Width = width;
             Height = height;
@@ -39,18 +39,25 @@ namespace Minesweeper.WPF
         public MineMap MineMap { get; set; }
 
         public IMineMapViewModel ViewModel { get; set; }
+        public List<IActorRef> Children { get; set; }
 
         public MineMapViewModelActor(IMineMapViewModel viewModel)
         {
             ViewModel = viewModel;
             Receive<string>(value => Handle(value));
             Receive<MineMapCreateMessage>(value => Handle(value));
-            Receive<MineMapClickMessage>(value => Handle(value));
+            Receive<ClickMessage>(value => Handle(value));
         }
 
-        private void Handle(MineMapClickMessage value)
+        private void Handle(ClickMessage value)
         {
             MineMap.Click(value.Y, value.X);
+
+            var combined = Children.Zip(MineMap.MineItems.Cast<MineItem>(), (a, b) => (a, b));
+            foreach (var (child, mineItem) in combined)
+            {
+                child?.Tell(mineItem.ToString());
+            }
         }
 
         private void Handle(MineMapCreateMessage msg)
@@ -64,9 +71,18 @@ namespace Minesweeper.WPF
                 child.Tell(PoisonPill.Instance);
             }
 
-            foreach(var vm in msg.MineItemViews)
+            Children = new List<IActorRef>();
+
+            foreach (var vm in msg.MineItemViews)
             {
-                Context.ActorOf(MineItemViewModelActor.Props(vm));
+                vm.Actor = Context.ActorOf(MineItemViewModelActor.Props(vm));
+                Children.Add(vm.Actor);
+            }
+
+            var x = MineMap.MineItems.Cast<MineItem>().ToList();
+            for (int i =0; i < Children.Count; i++)
+            {
+                Children[i].Tell(x[i].ToString());
             }
         }
 

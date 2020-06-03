@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace Minesweeper.WPF
 {
-    public class MineItemViewModel : INotifyPropertyChanged, IMineItemView
+    public class MineItemViewModel : INotifyPropertyChanged, IMineItemViewModel
     {
         #region  PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
