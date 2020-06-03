@@ -78,33 +78,25 @@ namespace Minesweeper
             }
         }
 
-        //public void GenerateBombs(int value)
-        //{
-        //    CountBombs = value;
-        //    Random rand = new Random();
-        //    int x, y;
-        //    int bombCount = 0;
-
-        //    do
-        //    {
-        //        x = rand.Next(0, Width);
-        //        y = rand.Next(0, Height);
-        //        if (MineItems[x, y].IsBomb == false)
-        //        {
-        //            MineItems[x, y].IsBomb = true;
-        //            bombCount++;
-        //        }
-        //    } while (bombCount < value);
-        //}
-
         public void GenerateBombs(int value)
         {
             CountBombs = value;
-            MineItems[1, 0].IsBomb = true;
-            MineItems[2, 0].IsBomb = true;
-            MineItems[4, 2].IsBomb = true;
-            MineItems[4, 4].IsBomb = true;
+            Random rand = new Random();
+            int x, y;
+            int bombCount = 0;
+
+            do
+            {
+                x = rand.Next(0, Width);
+                y = rand.Next(0, Height);
+                if (MineItems[x, y].IsBomb == false)
+                {
+                    MineItems[x, y].IsBomb = true;
+                    bombCount++;
+                }
+            } while (bombCount < value);
         }
+
         public void Click(int y, int x)
         {
             if (MineItems[y, x].IsCovered == false)
