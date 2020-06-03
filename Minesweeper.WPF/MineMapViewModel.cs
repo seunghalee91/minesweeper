@@ -25,6 +25,7 @@ namespace Minesweeper.WPF
         public int BombCount { get; private set; }
         public string ResetContent { get; set; } = "map Reset";
         public string _boombStatue { get; set; } = "Collapsed";
+        public string _successStatue { get; set; } = "Collapsed";
         public DelegateCommand ResetCommand { get; set; }
         private string _enableButton { get; set; }
         public MineMap MineMap { get; set; }    
@@ -65,6 +66,18 @@ namespace Minesweeper.WPF
                 OnPropertyChanged(nameof(BoombStatue));
             }
         }
+        public string SuccessStatue
+        {
+            get
+            {
+                return _successStatue;
+            }
+            set
+            {
+                _successStatue = value;
+                OnPropertyChanged(nameof(SuccessStatue));
+            }
+        }
         public string EnableButton
         {
             get
@@ -86,7 +99,7 @@ namespace Minesweeper.WPF
 
             RowCount = 5;
             ColCount = 5;
-            BombCount = 3;
+            BombCount = 4;
             MineMap = new MineMap(RowCount, ColCount);  
             ResetCommand = new DelegateCommand( _ => ResetAction());
         }
@@ -99,7 +112,7 @@ namespace Minesweeper.WPF
         public void CreateMineItemViewModels()
         {
             MineItemViewModels.Clear();
-            CheckEndGame();
+
             for (int i = 0; i < RowCount; i++)
             {
                 for (int j = 0; j < ColCount; j++)
@@ -116,20 +129,51 @@ namespace Minesweeper.WPF
         private void Click(int y, int x)
         {
             MineMap.Click(y, x);
+            CheckEndGame();
             CreateMineItemViewModels();
         }
         private void CheckEndGame()
         {
+            int ItemCount = (RowCount * ColCount) - BombCount;
+
             if (MineMap.CheckEndGame())
             {
-                EnableButton = "false";
-                BoombStatue = "Visible";
                 for (int i = 0; i < RowCount; i++)
                 {
                     for (int j = 0; j < ColCount; j++)
                     {
-                        this.MineMap.MineItems[i, j].IsCovered = false;
+
+                        if (this.MineMap.MineItems[i, j].IsCovered == false)
+                        {
+                            ItemCount--;
+                            if (this.MineMap.MineItems[i, j].IsBomb == true)
+                            {
+                                BoombStatue = "Visible";
+                                EnableButton = "false";
+                                ShowMap();
+                                return;
+                            }
+                        }
+
+                        if (ItemCount == 0)
+                        {
+                            SuccessStatue = "Visible";
+                            EnableButton = "false";
+                            ShowMap();
+                            return;
+                        }
+
                     }
+                }
+            }
+        }
+        private void ShowMap()
+        {
+            for (int i = 0; i < RowCount; i++)
+            {
+                for (int j = 0; j < ColCount; j++)
+                {
+                    this.MineMap.MineItems[i, j].IsCovered = false;
                 }
             }
         }
@@ -149,6 +193,8 @@ namespace Minesweeper.WPF
             PrepareGame();
             EnableButton = "true";
             BoombStatue = "Hidden";
+            SuccessStatue = "Hidden";
+
         }
     }
 }

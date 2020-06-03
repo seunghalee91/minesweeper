@@ -35,7 +35,9 @@
         <local:MineMapView DataContext="{Binding MineMapViewModels}" Grid.Row="2" HorizontalAlignment="Right" Margin="0,40,40,40" Width="306" >
             <Image Source="Image/boomb.png" Visibility="{Binding BoombStatue}"/>
         </local:MineMapView>
-
+        <local:MineMapView DataContext="{Binding MineMapViewModels}" Grid.Row="2" HorizontalAlignment="Right" Margin="0,40,40,40" Width="306" >
+            <Image Source="Image/goodjob.jpg" Visibility="{Binding SuccessStatue}"/>
+        </local:MineMapView>
 
     </Grid>
 </Window>

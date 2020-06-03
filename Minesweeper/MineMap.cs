@@ -78,23 +78,32 @@ namespace Minesweeper
             }
         }
 
+        //public void GenerateBombs(int value)
+        //{
+        //    CountBombs = value;
+        //    Random rand = new Random();
+        //    int x, y;
+        //    int bombCount = 0;
+
+        //    do
+        //    {
+        //        x = rand.Next(0, Width);
+        //        y = rand.Next(0, Height);
+        //        if (MineItems[x, y].IsBomb == false)
+        //        {
+        //            MineItems[x, y].IsBomb = true;
+        //            bombCount++;
+        //        }
+        //    } while (bombCount < value);
+        //}
+
         public void GenerateBombs(int value)
         {
             CountBombs = value;
-            Random rand = new Random();
-            int x, y;
-            int bombCount = 0;
-
-            do
-            {
-                x = rand.Next(0, Width);
-                y = rand.Next(0, Height);
-                if (MineItems[x, y].IsBomb == false)
-                {
-                    MineItems[x, y].IsBomb = true;
-                    bombCount++;
-                }
-            } while (bombCount < value);
+            MineItems[1, 0].IsBomb = true;
+            MineItems[2, 0].IsBomb = true;
+            MineItems[4, 2].IsBomb = true;
+            MineItems[4, 4].IsBomb = true;
         }
         public void Click(int y, int x)
         {
@@ -104,12 +113,9 @@ namespace Minesweeper
             }
             MineItems[y, x].IsCovered = false;
 
-            if (MineItems[y, x].IsBomb == true)
+            if (MineItems[y, x].IsBomb)
             {
-                if (CheckEndGame())
-                {
-                    return;
-                }
+                return;
             }
 
             if (MineItems[y, x].NearBombsCount != 0)
