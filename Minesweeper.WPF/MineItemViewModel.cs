@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Akka.Actor;
+using System;
 using System.ComponentModel;
 
 namespace Minesweeper.WPF
 {
-    public class MineItemViewModel : INotifyPropertyChanged
+    public class MineItemViewModel : INotifyPropertyChanged, IMineItemView
     {
         #region  PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
@@ -44,11 +45,13 @@ namespace Minesweeper.WPF
         }
         public MineItem MineItem;
         public DelegateCommand ClickCommand { get; set; }
-        public MineItemViewModel(MineItem mineItem, Action clickAction)
+        public IActorRef Actor { get; set; }
+        
+        public MineItemViewModel(int y, int x)
         {
-            MineItem = mineItem;
-            Content = MineItem.ToString();
-            ClickCommand = new DelegateCommand(_ => clickAction());
+            int Y = y;
+            int X = x;
+            ClickCommand = new DelegateCommand(_ => Actor?.Tell(new ClickMessage(Y, X)));
         }
     }
 }
