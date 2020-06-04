@@ -46,7 +46,6 @@ namespace Minesweeper.WPF
         public MineItem MineItem;
         public DelegateCommand ClickCommand { get; set; }
         public IActorRef Actor { get; set; }
-        
         public MineItemViewModel(int y, int x)
         {
             int Y = y;

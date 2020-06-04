@@ -21,19 +21,20 @@ namespace Minesweeper
                 {
                     for (int j = 0; j < 5; j++)
                     {
-                        Console.Write("{0} ", mineMap.MineItems[i, j]);
+                        Console.Write("{0}  ", mineMap.MineItems[i, j]);
                     }
-                    Console.WriteLine();
+                    Console.Write("\n\n");
                 }
                 Console.Write("Y, X:");
 
                 var point = Console.ReadLine()
-                    .Split(',')
+                    .Split(' ')
                     .Select(x => Convert.ToInt32(x))
                     .ToArray();
 
                 mineMap.Click(point[0], point[1]);
                 Console.Clear();
+
             }
 
             //결과 출력
@@ -41,10 +42,19 @@ namespace Minesweeper
             {
                 for (int j = 0; j < 5; j++)
                 {
-                    Console.Write("{0} ", mineMap.MineItems[i, j]);
+                    if (mineMap.MineItems[i, j].IsBomb == false)
+                    {
+                        Console.Write("{0}  ", mineMap.MineItems[i, j].NearBombsCount);
+                    }
+                    else
+                    {
+                        mineMap.MineItems[i, j].IsCovered = false;
+                        Console.Write("{0}  ", mineMap.MineItems[i, j].ToString());
+                    }
                 }
-                Console.WriteLine();
+                Console.Write("\n\n");
             }
+            Console.WriteLine("Game Over");
 
             Console.ReadKey();
         }

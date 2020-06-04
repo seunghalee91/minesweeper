@@ -2,8 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Forms;
 
 namespace Minesweeper.WPF
 {
@@ -21,42 +24,81 @@ namespace Minesweeper.WPF
             MineItemViews = mineItemViews.AsReadOnly();
         }
     }
-
-    public class MineMapClickMessage
+    public class ClickMessage
     {
-        public MineMapClickMessage(int y, int x)
+        public ClickMessage(int y, int x)
         {
             Y = y;
             X = x;
         }
-
-        public int Y { get; }
-        public int X { get; }
+        public int Y { get; set; }
+        public int X { get; set; }
     }
 
     public class MineMapViewModelActor : ReceiveActor
     {
         public MineMap MineMap { get; set; }
-
         public IMineMapViewModel ViewModel { get; set; }
         public List<IActorRef> Children { get; set; }
-
         public MineMapViewModelActor(IMineMapViewModel viewModel)
         {
             ViewModel = viewModel;
-            Receive<string>(value => Handle(value));
             Receive<MineMapCreateMessage>(value => Handle(value));
             Receive<ClickMessage>(value => Handle(value));
+            Receive<bool>(value => Handle(value));
         }
 
+        public void ShowMap()
+        {
+            var x = MineMap.MineItems.Cast<MineItem>().ToList();
+
+            for (int i = 0; i < Children.Count; i++)
+            {
+                x[i].IsCovered = false;
+                Children[i].Tell(x[i].ToString());
+            }
+        }
+        private void Handle(bool EndFlag)
+        {
+            var x = MineMap.MineItems.Cast<MineItem>().ToList();
+            int ItemCount = x.Count - MineMap.CountBombs;
+
+            if (EndFlag)
+            {
+                for (int i = 0; i < Children.Count; i++)
+                {
+                    if(x[i].IsCovered == false)
+                    {
+                        ItemCount--;
+                        if(x[i].IsBomb)
+                        {
+                            ViewModel.BoombStatue = "Visible";
+                            ViewModel.EnableButton = "false";
+                            ShowMap();
+                            return;
+                        }
+                    }
+
+                    if(ItemCount == 0)
+                    {
+                        ViewModel.SuccessStatue = "Visible";
+                        ViewModel.EnableButton = "false";
+                        ShowMap();
+                        return;
+                    }
+                }
+            }
+        }
         private void Handle(ClickMessage value)
         {
             MineMap.Click(value.Y, value.X);
 
-            var combined = Children.Zip(MineMap.MineItems.Cast<MineItem>(), (a, b) => (a, b));
-            foreach (var (child, mineItem) in combined)
+            Self.Tell(MineMap.CheckEndGame());
+
+            var x = MineMap.MineItems.Cast<MineItem>().ToList();
+            for (int i = 0; i < Children.Count; i++)
             {
-                child?.Tell(mineItem.ToString());
+                Children[i].Tell(x[i].ToString());
             }
         }
 
@@ -90,11 +132,6 @@ namespace Minesweeper.WPF
         {
             return Akka.Actor.Props.Create(
                 () => new MineMapViewModelActor(viewModel));
-        }
-        public void Handle(string value)
-        {
-            if (value == "Hello")
-                Sender.Tell("World");
         }
     }
 }

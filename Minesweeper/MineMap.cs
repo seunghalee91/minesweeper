@@ -173,7 +173,6 @@ namespace Minesweeper
                     }
                 }
             }
-
             return itemsCount == 0;
         }
     }

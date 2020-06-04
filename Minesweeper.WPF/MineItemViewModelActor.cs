@@ -14,16 +14,20 @@ namespace Minesweeper.WPF
             MineItemViewModel = vm;
             Receive<string>(value => Handle(value));
             Receive<ClickMessage>(value => Handle(value));
+            Receive<bool>(value => ItemsUncovered(value));
         }
 
         private void Handle(ClickMessage value)
         {
             Context.Parent.Tell(value);
         }
-
         private void Handle(string value)
         {
             MineItemViewModel.Content = value;
+        }
+        private void ItemsUncovered(bool value)
+        {
+            
         }
 
         public IMineItemViewModel MineItemViewModel { get; }

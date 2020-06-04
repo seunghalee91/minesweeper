@@ -8,5 +8,8 @@ namespace Minesweeper.WPF
 {
     public interface IMineMapViewModel
     {
+        string BoombStatue { get; set; }
+        string SuccessStatue { get; set; }
+        string EnableButton { get; set; }
     }
 }
