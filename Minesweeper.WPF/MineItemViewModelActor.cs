@@ -14,7 +14,6 @@ namespace Minesweeper.WPF
             MineItemViewModel = vm;
             Receive<string>(value => Handle(value));
             Receive<ClickMessage>(value => Handle(value));
-            Receive<bool>(value => ItemsUncovered(value));
         }
 
         private void Handle(ClickMessage value)
@@ -25,11 +24,6 @@ namespace Minesweeper.WPF
         {
             MineItemViewModel.Content = value;
         }
-        private void ItemsUncovered(bool value)
-        {
-            
-        }
-
         public IMineItemViewModel MineItemViewModel { get; }
 
         public static Props Props(IMineItemViewModel vm)

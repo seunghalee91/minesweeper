@@ -130,6 +130,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="ClickMessage.cs" />
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="IMineItemViewModel.cs" />
     <Compile Include="IMineMapViewModel.cs" />

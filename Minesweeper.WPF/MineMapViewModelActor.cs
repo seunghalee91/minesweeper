@@ -1,12 +1,6 @@
 ﻿using Akka.Actor;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Permissions;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Forms;
 
 namespace Minesweeper.WPF
 {
@@ -23,16 +17,6 @@ namespace Minesweeper.WPF
             BombsCount = bombsCount;
             MineItemViews = mineItemViews.AsReadOnly();
         }
-    }
-    public class ClickMessage
-    {
-        public ClickMessage(int y, int x)
-        {
-            Y = y;
-            X = x;
-        }
-        public int Y { get; set; }
-        public int X { get; set; }
     }
 
     public class MineMapViewModelActor : ReceiveActor
@@ -101,7 +85,6 @@ namespace Minesweeper.WPF
                 Children[i].Tell(x[i].ToString());
             }
         }
-
         private void Handle(MineMapCreateMessage msg)
         {
             MineMap = new MineMap(msg.Width, msg.Height);

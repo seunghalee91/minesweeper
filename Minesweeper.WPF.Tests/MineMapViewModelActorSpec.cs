@@ -1,5 +1,7 @@
 ﻿using Akka.TestKit.Xunit2;
 using FluentAssertions;
+using System.Collections.ObjectModel;
+using System.Linq;
 using Xunit;
 
 namespace Minesweeper.WPF.Tests
@@ -11,11 +13,16 @@ namespace Minesweeper.WPF.Tests
         {
             // arrange
             var actor = Sys.ActorOf(MineMapViewModelActor.Props(null));
+            MineItemViewModel MineItemViewModels = new MineItemViewModel(1, 1);
+
             // act
-            actor.Tell("Hello", TestActor);
+            MineItemViewModels.Content = ".";
+            
+            //actor.Tell(, TestActor);
+
 
             // assert
-            ExpectMsg("World");
+            MineItemViewModels.Content.Should().Be(".");
 
         }
     }

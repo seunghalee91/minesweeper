@@ -92,6 +92,7 @@ namespace Minesweeper.WPF
         }
         public MineMapViewModel(ActorSystem system, Func<IMineMapViewModel, Props> propsFunc)
         {
+
             System = system;
             var props = propsFunc?.Invoke(this);
             Actor = System?.ActorOf(props);
