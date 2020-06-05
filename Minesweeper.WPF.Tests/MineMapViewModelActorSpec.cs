@@ -49,7 +49,9 @@ namespace Minesweeper.Akka.Tests
             // arrange
             var child = CreateTestProbe();
             var actor = ActorOfAsTestActorRef<MineMapViewModelActor>(MineMapViewModelActor.Props(null, (ctx, vm) => child.Ref ));
+            //UnderlyingActor : MineMapViewModelActor의 속성들을 가져올수 있음
             actor.UnderlyingActor.MineMapMaker = (w, h) => new MockMineMap(w, h);
+            
 
             // act
             actor.Tell(new MineMapCreateMessage(1, 1, 1, new List<IMineItemViewModel>{ new MockMineItemViewModel(), } ));
