@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Minesweeper.WPF\Minesweeper.WPF.csproj" />
+    <ProjectReference Include="..\Mineswepper.Akka\Minesweeper.Akka.csproj" />
   </ItemGroup>
 
 </Project>

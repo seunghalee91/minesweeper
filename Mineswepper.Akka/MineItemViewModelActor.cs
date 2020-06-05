@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Akka.Actor.Props;
 
-namespace Minesweeper.WPF
+namespace Minesweeper.Akka
 {
     public class MineItemViewModelActor : ReceiveActor
     {
@@ -28,7 +29,7 @@ namespace Minesweeper.WPF
 
         public static Props Props(IMineItemViewModel vm)
         {
-            return Akka.Actor.Props.Create(() => new MineItemViewModelActor(vm));
+            return Create(() => new MineItemViewModelActor(vm));
         }
     }
 }

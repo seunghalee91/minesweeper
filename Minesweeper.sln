@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.489
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minesweeper", "Minesweeper\Minesweeper.csproj", "{3C853891-F18B-437A-919A-C6F84089F2E3}"
 EndProject
@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Minesweeper.Tests", "Minesw
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minesweeper.WPF", "Minesweeper.WPF\Minesweeper.WPF.csproj", "{09B071B5-8C27-4C56-9CD5-68841BCF3F3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minesweeper.WPF.Tests", "Minesweeper.WPF.Tests\Minesweeper.WPF.Tests.csproj", "{DD0F3BB9-1F21-42FA-AB7A-1B197EC56650}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Minesweeper.Akka.Tests", "Minesweeper.WPF.Tests\Minesweeper.Akka.Tests.csproj", "{DD0F3BB9-1F21-42FA-AB7A-1B197EC56650}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minesweeper.Akka", "Mineswepper.Akka\Minesweeper.Akka.csproj", "{3E4C7683-F47A-4123-A544-27F477CC0FFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{DD0F3BB9-1F21-42FA-AB7A-1B197EC56650}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD0F3BB9-1F21-42FA-AB7A-1B197EC56650}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD0F3BB9-1F21-42FA-AB7A-1B197EC56650}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E4C7683-F47A-4123-A544-27F477CC0FFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E4C7683-F47A-4123-A544-27F477CC0FFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E4C7683-F47A-4123-A544-27F477CC0FFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E4C7683-F47A-4123-A544-27F477CC0FFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

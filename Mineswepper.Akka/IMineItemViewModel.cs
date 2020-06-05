@@ -1,6 +1,6 @@
 ﻿using Akka.Actor;
 
-namespace Minesweeper.WPF
+namespace Minesweeper.Akka
 {
     public interface IMineItemViewModel
     {

@@ -1,8 +1,9 @@
 ﻿using Akka.Actor;
 using System.Collections.Generic;
 using System.Linq;
+using static Akka.Actor.Props;
 
-namespace Minesweeper.WPF
+namespace Minesweeper.Akka
 {
     public class MineMapCreateMessage
     {
@@ -113,7 +114,7 @@ namespace Minesweeper.WPF
 
         public static Props Props(IMineMapViewModel viewModel)
         {
-            return Akka.Actor.Props.Create(
+            return Create(
                 () => new MineMapViewModelActor(viewModel));
         }
     }

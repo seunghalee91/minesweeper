@@ -4,8 +4,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Xunit;
 
-namespace Minesweeper.WPF.Tests
+namespace Minesweeper.Akka.Tests
 {
+
+
     public class MineMapViewModelActorSpec : TestKit
     {
         [Fact]
@@ -13,16 +15,23 @@ namespace Minesweeper.WPF.Tests
         {
             // arrange
             var actor = Sys.ActorOf(MineMapViewModelActor.Props(null));
-            MineItemViewModel MineItemViewModels = new MineItemViewModel(1, 1);
+            
+            // act
+            
+            // assert
+        }
+
+        [Fact]
+        public void Should_Be_Click_Sync()
+        {
+            // arrange
+            var actor = ActorOfAsTestActorRef< MineMapViewModelActor>(MineMapViewModelActor.Props(null));
+            var child = 
 
             // act
-            MineItemViewModels.Content = ".";
-            
-            //actor.Tell(, TestActor);
-
+            actor.Tell(new ClickMessage(0, 0));
 
             // assert
-            MineItemViewModels.Content.Should().Be(".");
 
         }
     }

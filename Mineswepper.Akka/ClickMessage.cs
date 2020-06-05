@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Minesweeper.WPF
+namespace Minesweeper.Akka
 {
     public class ClickMessage
     {

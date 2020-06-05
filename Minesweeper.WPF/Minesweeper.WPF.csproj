@@ -130,16 +130,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="ClickMessage.cs" />
     <Compile Include="DelegateCommand.cs" />
-    <Compile Include="IMineItemViewModel.cs" />
-    <Compile Include="IMineMapViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="MineItemView.xaml.cs">
       <DependentUpon>MineItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MineItemViewModel.cs" />
-    <Compile Include="MineItemViewModelActor.cs" />
     <Compile Include="MineMapView.xaml.cs">
       <DependentUpon>MineMapView.xaml</DependentUpon>
     </Compile>
@@ -162,7 +158,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MineMapViewModelActor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -197,6 +192,10 @@
     <ProjectReference Include="..\Minesweeper\Minesweeper.csproj">
       <Project>{3c853891-f18b-437a-919a-c6f84089f2e3}</Project>
       <Name>Minesweeper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mineswepper.Akka\Minesweeper.Akka.csproj">
+      <Project>{3e4c7683-f47a-4123-a544-27f477cc0ffe}</Project>
+      <Name>Minesweeper.Akka</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
