@@ -22,49 +22,27 @@ namespace Minesweeper.Akka.Tests
                 }
             };
         }
-
-        public int CountBombs => throw new System.NotImplementedException();
-
         public int Height { get;  }
-
         public MineItem[,] MineItems { get; set; }
-
         public int Width { get; }
-
+        public void Click(int y, int x)
+        {
+        }
+        public void GenerateBombs(int value)
+        {
+        }
+        public void GenerateCountNearBombs()
+        {
+        }
+        public int CountBombs => throw new System.NotImplementedException();
         public bool CheckEndGame()
         {
             throw new System.NotImplementedException();
-        }
-
-        public void Click(int y, int x)
-        {
-            
-        }
-
-        public void GenerateBombs(int value)
-        {
-            
-        }
-
-        public void GenerateCountNearBombs()
-        {
-            
         }
     }
 
     public class MineMapViewModelActorSpec : TestKit
     {
-        [Fact]
-        public void Should_Be_Create()
-        {
-            // arrange
-            var actor = Sys.ActorOf(MineMapViewModelActor.Props(null, null));
-
-            // act
-
-            // assert
-        }
-
         [Fact]
         public void Should_Be_Click_Sync()
         {

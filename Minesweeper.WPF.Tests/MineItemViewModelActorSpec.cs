@@ -51,15 +51,22 @@ namespace Minesweeper.Akka.Tests
             parent.ExpectMsg(msg);
         }
 
+
+
+
+
         [Fact]
         public void Should_Be_String_Sync()
         {
             // arrange
             var mivm = new MockMineItemViewModel();
+            //var actor = ActorOf(MineItemViewModelActor.Props(mivm));
             var actor = ActorOfAsTestActorRef<MineItemViewModelActor>(MineItemViewModelActor.Props(mivm));
+
 
             // act
             actor.Tell("1");
+       
 
             // assert
             mivm.Content.Should().Be("1");
