@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Minesweeper
 {
-    public class MineMap
+    public class MineMap : IMineMap
     {
         public MineItem[,] MineItems { get; set; }
         public int Width { get; }
@@ -117,19 +117,19 @@ namespace Minesweeper
 
             #region 주변 ItemsClick
             if (y - 1 >= 0)
+            {
+                if (x - 1 >= 0)
                 {
-                    if (x - 1 >= 0)
-                    {
-                        Click(y - 1, x - 1);
-                    }
-
-                    Click(y - 1, x);
-
-                    if (x + 1 < Width)
-                    {
-                        Click(y - 1, x + 1);
-                    }
+                    Click(y - 1, x - 1);
                 }
+
+                Click(y - 1, x);
+
+                if (x + 1 < Width)
+                {
+                    Click(y - 1, x + 1);
+                }
+            }
             if (y + 1 < Height)
             {
                 if (x - 1 >= 0)

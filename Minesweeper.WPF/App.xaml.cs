@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Akka;
 using Akka.Actor;
+using Minesweeper.Akka;
 
 namespace Minesweeper.WPF
 {
@@ -30,7 +31,11 @@ namespace Minesweeper.WPF
         private void _createMainWindow()
         {
             ActorSystem system = ActorSystem.Create("minesweeper");
-            MineMapViewModel viewModel = new MineMapViewModel(system, vm => MineMapViewModelActor.Props(vm));
+            MineMapViewModel viewModel = new MineMapViewModel(
+                system, 
+                vm => MineMapViewModelActor.Props(
+                    vm, 
+                    (ctx, model) =>  ctx.ActorOf(MineItemViewModelActor.Props(model))));
             MainWindowViewModel mainViewModel = new MainWindowViewModel(viewModel);
             MainWindow mainWindow = new MainWindow(mainViewModel);
             mainWindow.Show();

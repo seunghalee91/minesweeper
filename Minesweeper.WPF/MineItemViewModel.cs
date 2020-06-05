@@ -1,4 +1,5 @@
 ﻿using Akka.Actor;
+using Minesweeper.Akka;
 using System;
 using System.ComponentModel;
 

@@ -16,7 +16,7 @@ namespace Minesweeper.Akka.Tests
     public class MockMineItemViewModel : IMineItemViewModel
     {
         public string Content { get ; set ; }
-        public IActorRef Actor { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IActorRef Actor { get; set; }
     }
 
     public class MineItemViewModelActorSpec : TestKit

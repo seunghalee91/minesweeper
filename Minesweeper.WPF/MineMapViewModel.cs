@@ -6,6 +6,7 @@ using System.Timers;
 using Akka.Actor;
 using System;
 using System.Linq;
+using Minesweeper.Akka;
 
 namespace Minesweeper.WPF
 {
